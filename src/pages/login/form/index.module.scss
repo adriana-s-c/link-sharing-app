@@ -3,4 +3,14 @@
 .box {
   background-color: $white-color;
   padding: 40px;
+  width: 396px;
+}
+
+.textBox {
+  font-size: $fontsize-m;
+  line-height: 24px;
+  color: $grey-color;
+}
+.purpleText {
+  color: $primary-color;
 }

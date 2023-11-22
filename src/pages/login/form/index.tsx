@@ -5,7 +5,7 @@ import { Stack } from "../../../components/Stack";
 export function LoginForm() {
   return (
     <Stack orientation="vertical" gap="24px" className={styles.box}>
-      <Stack orientation="vertical">
+      <Stack orientation="vertical" gap="1px">
         <h2>Login</h2>
         <p>Add your details below to get back into the app</p>
       </Stack>
@@ -23,6 +23,16 @@ export function LoginForm() {
         type="password"
         icon="password"
       />
+      <button>Login</button>
+      <Stack
+        orientation="horizontal"
+        gap="4px"
+        spacing="center"
+        className={styles.textBox}
+      >
+        <p>Don’t have an account?</p>
+        <p className={styles.purpleText}>Create account</p>
+      </Stack>
     </Stack>
   );
 }

@@ -7,6 +7,7 @@
 }
 
 .input {
+  width: 100%;
   border: 1px solid $lightgrey-color;
   border-radius: 8px;
   padding: 12px 16px 12px 44px;
@@ -15,6 +16,7 @@
   background-repeat: no-repeat;
   background-size: 16px 16px;
   background-position: 16px 50%;
+  transition: all 0.3s ease-in;
   &-email {
     background-image: url(../../images/icon-email.svg);
   }
@@ -29,5 +31,12 @@
   }
   &-link {
     background-image: url(../../images/icon-link.svg);
+  }
+  &:focus {
+    transition: all 0.3s ease-in;
+    outline-color: $primary-color;
+    outline-style: solid;
+    outline-width: 1px;
+    box-shadow: 0px 0px 32px 0px #633cff40;
   }
 }
