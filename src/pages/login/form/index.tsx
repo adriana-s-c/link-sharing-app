@@ -1,13 +1,18 @@
 import styles from "./index.module.scss";
 import { Input } from "../../../components/Input";
 import { Stack } from "../../../components/Stack";
+import { Text } from "../../../components/Text";
 
 export function LoginForm() {
   return (
     <Stack orientation="vertical" gap="24px" className={styles.box}>
-      <Stack orientation="vertical" gap="1px">
-        <h2>Login</h2>
-        <p>Add your details below to get back into the app</p>
+      <Stack orientation="vertical" gap="15px">
+        <Text type="heading" size="m">
+          Login
+        </Text>
+        <Text type="body" size="m" color="grey">
+          Add your details below to get back into the app
+        </Text>
       </Stack>
       <Input
         title="Email adress"
@@ -24,14 +29,13 @@ export function LoginForm() {
         icon="password"
       />
       <button>Login</button>
-      <Stack
-        orientation="horizontal"
-        gap="4px"
-        spacing="center"
-        className={styles.textBox}
-      >
-        <p>Don’t have an account?</p>
-        <p className={styles.purpleText}>Create account</p>
+      <Stack orientation="horizontal" gap="4px" spacing="center">
+        <Text type="body" size="m" color="grey">
+          Don’t have an account?
+        </Text>
+        <Text type="body" size="m" color="purple">
+          Create account
+        </Text>
       </Stack>
     </Stack>
   );

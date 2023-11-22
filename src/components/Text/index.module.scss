@@ -1,0 +1,35 @@
+@import "../../variables.scss";
+
+.text {
+  color: $black-color;
+  line-height: 24px;
+}
+
+.body {
+  font-weight: 400;
+  &-s {
+    font-size: $fontsize-s;
+  }
+  &-m {
+    font-size: $fontsize-m;
+  }
+}
+
+.heading {
+  font-weight: 700;
+  &-s {
+    font-size: $fontsize-m;
+  }
+  &-m {
+    font-size: $fontsize-l;
+  }
+}
+
+.color {
+  &-grey {
+    color: $grey-color;
+  }
+  &-purple {
+    color: $primary-color;
+  }
+}
