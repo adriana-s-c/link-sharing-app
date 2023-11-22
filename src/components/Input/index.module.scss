@@ -1,0 +1,33 @@
+@import "../../variables";
+
+.title {
+  font-size: $fontsize-s;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.input {
+  border: 1px solid $lightgrey-color;
+  border-radius: 8px;
+  padding: 12px 16px 12px 44px;
+  font-size: $fontsize-m;
+  background-image: url(../../images/icon-email.svg);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: 16px 50%;
+  &-email {
+    background-image: url(../../images/icon-email.svg);
+  }
+  &-password {
+    background-image: url(../../images/icon-password.svg);
+  }
+  &-password {
+    background-image: url(../../images/icon-password.svg);
+  }
+  &-github {
+    background-image: url(../../images/icon-github.svg);
+  }
+  &-link {
+    background-image: url(../../images/icon-link.svg);
+  }
+}

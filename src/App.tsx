@@ -1,9 +1,10 @@
 import "./App.scss";
+import { Login } from "./pages/login";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">Instrument Sans</header>
+      <Login />
     </div>
   );
 }
