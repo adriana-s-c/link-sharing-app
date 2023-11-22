@@ -2,6 +2,7 @@ import styles from "./index.module.scss";
 import { Input } from "../../../components/Input";
 import { Stack } from "../../../components/Stack";
 import { Text } from "../../../components/Text";
+import { Button } from "../../../components/Button";
 
 export function LoginForm() {
   return (
@@ -28,7 +29,7 @@ export function LoginForm() {
         type="password"
         icon="password"
       />
-      <button>Login</button>
+      <Button colorScheme="primary">Login</Button>
       <Stack orientation="horizontal" gap="4px" spacing="center">
         <Text type="body" size="m" color="grey">
           Don’t have an account?
