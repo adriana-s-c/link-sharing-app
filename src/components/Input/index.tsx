@@ -35,10 +35,3 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   )
 );
 
-// {clsx(
-//   styles.flex,
-//   orientation && styles[`orientation-${orientation}`],
-//   align && styles[`align-${align}`],
-//   spacing && styles[`spacing-${spacing}`],
-//   className
-// )}
