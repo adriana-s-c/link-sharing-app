@@ -5,8 +5,8 @@ import { Stack } from "../../components/Stack";
 
 export function Login() {
   return (
-    <Stack orientation="vertical" className={styles.box}>
-      <img src={logo} alt="Logo" />
+    <Stack orientation="vertical" gap="51px" align="center">
+      <img src={logo} alt="Logo" className={styles.logo} />
       <LoginForm />
     </Stack>
   );
