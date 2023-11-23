@@ -1,6 +1,11 @@
+@import "../../variables.scss";
+
 .box {
-  height: 573px;
-  width: 476px;
+  background-color: $white-color;
+  padding: 40px;
+  width: 396px;
+  border-radius: $border-radius-m;
+  height: 100%;
 }
 
 .logo {

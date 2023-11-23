@@ -1,11 +1,13 @@
 import "./App.scss";
 import { Stack } from "./components/Stack";
-import { Login } from "./pages/login";
+import { EntryPage } from "./pages/login";
 
 function App() {
   return (
     <Stack className="App" align="center" spacing="center">
-      <Login />
+      <Stack>
+        <EntryPage />
+      </Stack>
     </Stack>
   );
 }
