@@ -6,7 +6,7 @@ import { Button } from "../../../components/Button";
 
 export function LoginForm() {
   return (
-    <Stack orientation="vertical" gap="24px" className={styles.box}>
+    <Stack orientation="vertical" gap="24px">
       <Stack orientation="vertical" gap="15px">
         <Text type="heading" size="m">
           Login
@@ -16,7 +16,7 @@ export function LoginForm() {
         </Text>
       </Stack>
       <Input
-        title="Email adress"
+        title="Email address"
         id="email"
         placeholder="e.g. alex@email.com"
         type="email"
