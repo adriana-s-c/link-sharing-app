@@ -41,7 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       )}
       {...buttonProps}
     >
-      <Stack orientation="horizontal" gap="8px">
+      <Stack orientation="horizontal" gap="8px" className={styles.center}>
         {icon ? getIcon(icon) : null}
         {children}
       </Stack>
