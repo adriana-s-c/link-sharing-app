@@ -2,15 +2,29 @@ import styles from "./index.module.scss";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { forwardRef } from "react";
 import clsx from "clsx";
+import { Stack } from "../Stack";
+import { ReactComponent as LinkIcon } from "../../images/icon-link.svg";
+import { ReactComponent as ProfileIcon } from "../../images/icon-profile-details-header.svg";
 
 type Props = ComponentPropsWithoutRef<"button"> & {
-  colorScheme: "primary" | "secondary";
+  colorScheme: "primary" | "secondary" | "third" | "active";
+  icon?: any;
   children?: ReactNode;
 };
+
+function getIcon(name: string) {
+  switch (name) {
+    case "link":
+      return <LinkIcon className={styles.icon} />;
+    case "profile":
+      return <ProfileIcon className={styles.iconGrey} />;
+  }
+}
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
   (
     {
+      icon,
       type = "button",
       colorScheme = "primary",
       children,
@@ -27,7 +41,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       )}
       {...buttonProps}
     >
-      {children}
+      <Stack orientation="horizontal" gap="8px">
+        {icon ? getIcon(icon) : null}
+        {children}
+      </Stack>
     </button>
   )
 );
