@@ -1,8 +1,7 @@
 import styles from "./index.module.scss";
 import logo from "../../images/logo-devlinks-large.svg";
-import { LoginForm } from "./LoginForm";
 import { Stack } from "../../components/Stack";
-import { CreateAccount } from "./createAccount";
+import { CreateAccount } from "./CreateAccount";
 
 export function EntryPage() {
   return (

@@ -2,6 +2,7 @@
 
 .button {
   width: 100%;
+  text-wrap: nowrap;
   font-size: $fontsize-m;
   font-weight: 600;
   border: none;
@@ -24,4 +25,28 @@
       background-color: $secondary-color;
     }
   }
+  &-secondary {
+    color: $primary-color;
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    &:hover {
+      background-color: $third-color;
+    }
+  }
+  &-third {
+    background-color: transparent;
+    color: $grey-color;
+  }
+  &-active {
+    color: $primary-color;
+    background-color: $third-color;
+  }
+}
+
+.icon {
+  fill: $primary-color;
+}
+
+.iconGrey {
+  fill: $grey-color;
 }
