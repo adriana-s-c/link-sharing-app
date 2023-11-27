@@ -1,17 +1,16 @@
 @import "../../../variables.scss";
 
-.box {
-  height: 834px;
-  background-color: $white-color;
-  width: 100%;
-  border-radius: $border-radius-m;
+.fullheight {
+  height: 100%;
 }
 
-.box2 {
+.box {
   padding: 40px;
+  height: 100%;
 }
 
 .container {
+  height: 100%;
   background-color: $background-color;
   padding: 40px;
   text-align: center;
@@ -19,15 +18,4 @@
 
 .textcontainer {
   padding-inline: 120px;
-}
-
-.divider {
-  height: 1px;
-  background-color: $lightgrey-color;
-}
-
-.buttonBox {
-  width: fit-content;
-  padding-block: 24px;
-  padding-inline: 40px;
 }
