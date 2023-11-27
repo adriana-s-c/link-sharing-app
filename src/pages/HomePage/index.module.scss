@@ -1,4 +1,12 @@
+@import "../../variables.scss";
 .box {
   width: 100vw;
   margin: 3%;
+}
+
+.container {
+  height: 834px;
+  background-color: $white-color;
+  width: 100%;
+  border-radius: $border-radius-m;
 }

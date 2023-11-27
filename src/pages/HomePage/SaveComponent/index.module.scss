@@ -1,0 +1,12 @@
+@import "../../../variables.scss";
+
+.divider {
+  height: 1px;
+  background-color: $lightgrey-color;
+}
+
+.buttonBox {
+  width: fit-content;
+  padding-block: 24px;
+  padding-inline: 40px;
+}

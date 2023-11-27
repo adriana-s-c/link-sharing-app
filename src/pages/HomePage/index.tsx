@@ -3,6 +3,7 @@ import { Stack } from "../../components/Stack";
 import { NavBar } from "./NavBar";
 import { Phone } from "./Phone";
 import { LinkCustomizer } from "./LinkCustomizer";
+import { ProfileDetails } from "./ProfileDetails";
 
 export function HomePage() {
   return (
@@ -10,7 +11,10 @@ export function HomePage() {
       <NavBar />
       <Stack orientation="horizontal" gap="24px">
         <Phone />
-        <LinkCustomizer />
+        <div className={styles.container}>
+          {/* <LinkCustomizer /> */}
+          <ProfileDetails />
+        </div>
       </Stack>
     </Stack>
   );

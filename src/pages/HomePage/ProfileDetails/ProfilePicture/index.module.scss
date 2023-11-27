@@ -1,0 +1,16 @@
+@import "../../../../variables.scss";
+
+.box {
+  background-color: $background-color;
+  padding: 20px;
+  border-radius: $border-radius-m;
+}
+
+.buttonBox {
+  width: 193px;
+  height: 193px;
+}
+
+.width {
+  width: 31.5%;
+}
