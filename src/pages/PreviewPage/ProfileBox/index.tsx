@@ -11,6 +11,16 @@ export function ProfileBox() {
         <MediaBox name="Github" />
         <MediaBox name="Youtube" />
         <MediaBox name="LinkedIn" />
+        <MediaBox name="Gitlab" />
+        <MediaBox name="Codewars" />
+        <MediaBox name="Twitter" />
+        <MediaBox name="Twitch" />
+        <MediaBox name="StackOverflow" />
+        <MediaBox name="Devto" />
+        <MediaBox name="FrontendMentor" />
+        <MediaBox name="Hashnode" />
+        <MediaBox name="freeCodeCamp" />
+        <MediaBox name="Facebook" />
       </Stack>
     </Stack>
   );
