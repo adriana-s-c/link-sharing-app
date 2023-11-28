@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+
+.box {
+  padding: 16px;
+  border-radius: 8px;
+  &-Github {
+    background-color: $github-color;
+  }
+  &-Youtube {
+    background-color: $youtube-color;
+  }
+  &-LinkedIn {
+    background-color: $linkedin-color;
+  }
+}

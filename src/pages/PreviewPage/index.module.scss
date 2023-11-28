@@ -1,0 +1,20 @@
+@import "../../variables.scss";
+
+.box {
+  width: 100%;
+  padding: 24px;
+}
+
+.width {
+  width: 100%;
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  height: 357px;
+  width: 100%;
+  background-color: $primary-color;
+  border-radius: 0 0 32px 32px;
+  z-index: -1;
+}

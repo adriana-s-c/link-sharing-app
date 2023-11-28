@@ -1,0 +1,12 @@
+@import "../../../../variables.scss";
+
+.width {
+  width: 100%;
+}
+
+.img {
+  width: 104px;
+  height: 104px;
+  border-radius: 100%;
+  border: 4px solid $primary-color;
+}
