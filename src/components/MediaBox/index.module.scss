@@ -12,4 +12,40 @@
   &-LinkedIn {
     background-color: $linkedin-color;
   }
+  &-Facebook {
+    background-color: $facebook-color;
+  }
+  &-FrontendMentor {
+    border: 1px solid $lightgrey-color;
+  }
+  &-Twitter {
+    background-color: $twitter-color;
+  }
+  &-Twitch {
+    background-color: $twitch-color;
+  }
+  &-Devto {
+    background-color: $devto-color;
+  }
+  &-Codewars {
+    background-color: $codewars-color;
+  }
+  &-freeCodeCamp {
+    background-color: $freecodecamp-color;
+  }
+  &-Gitlab {
+    background-color: $gitlab-color;
+  }
+  &-Hashnode {
+    background-color: $hashnode-color;
+  }
+  &-StackOverflow {
+    background-color: $stackoverflow-color;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: $white-color;
 }
