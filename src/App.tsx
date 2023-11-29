@@ -7,8 +7,8 @@ function App() {
   return (
     // <Stack className="App" align="center" spacing="center">
     <Stack className={styles.App}>
-      {/* <HomePage /> */}
-      <PreviewPage />
+      <HomePage />
+      {/* <PreviewPage /> */}
     </Stack>
   );
 }
