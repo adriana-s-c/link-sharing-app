@@ -3,15 +3,25 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import clsx from "clsx";
 import { forwardRef } from "react";
 
+type AlignType = "end" | "center" | "start" | "baseline";
+type SpacingType =
+  | "evenly"
+  | "between"
+  | "around"
+  | "center"
+  | "flexEnd"
+  | "flexStart";
+type OrientationType =
+  | "horizontal"
+  | "vertical"
+  | "horizontal-reverse"
+  | "vertical-reverse";
+
 type Props = ComponentPropsWithoutRef<"div"> & {
   className?: string;
-  orientation?:
-    | "horizontal"
-    | "vertical"
-    | "horizontal-reverse"
-    | "vertical-reverse";
-  spacing?: string;
-  align?: string;
+  orientation?: OrientationType;
+  align?: AlignType;
+  spacing?: SpacingType;
   gap?: string;
   children: ReactNode;
 };
@@ -25,7 +35,7 @@ export const Stack = forwardRef<HTMLDivElement, Props>(
       align,
       gap,
       children,
-      ...divProps
+      ...restProps
     }: Props,
     ref
   ) => (
@@ -38,7 +48,8 @@ export const Stack = forwardRef<HTMLDivElement, Props>(
         className
       )}
       style={gap ? { gap } : {}}
-      {...divProps}
+      ref={ref}
+      {...restProps}
     >
       {children}
     </div>

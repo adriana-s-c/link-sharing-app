@@ -1,0 +1,12 @@
+@import "../../../../variables.scss";
+
+.box {
+  height: 100%;
+  background-color: $background-color;
+  padding: 40px;
+  text-align: center;
+}
+
+.textcontainer {
+  padding-inline: 120px;
+}

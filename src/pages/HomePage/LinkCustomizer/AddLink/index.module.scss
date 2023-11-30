@@ -1,0 +1,11 @@
+@import "../../../../variables.scss";
+
+.box {
+  background-color: $background-color;
+  border-radius: $border-radius-m;
+  padding: 20px;
+}
+
+.fullWidth {
+  width: 100%;
+}

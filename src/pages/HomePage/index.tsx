@@ -12,8 +12,8 @@ export function HomePage() {
       <Stack orientation="horizontal" gap="24px">
         <Phone />
         <div className={styles.container}>
-          {/* <LinkCustomizer /> */}
-          <ProfileDetails />
+          <LinkCustomizer />
+          {/* <ProfileDetails /> */}
         </div>
       </Stack>
     </Stack>

@@ -1,0 +1,61 @@
+@import "../../variables.scss";
+
+.relative {
+  position: relative;
+}
+
+.box {
+  border: 1px solid $lightgrey-color;
+  padding: 12px 16px 12px 16px;
+  border-radius: $border-radius-m;
+  background-color: $white-color;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+  &-isOpen {
+    border: 1px solid #633cff;
+    box-shadow: 0px 0px 32px 0px #633cff40;
+    transition: all 0.3s ease-in;
+  }
+}
+
+.options {
+  height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  margin-top: 16px;
+  background-color: $white-color;
+  border: 1px solid $lightgrey-color;
+  border-radius: $border-radius-m;
+  padding: 12px 16px 12px 16px;
+  box-shadow: 0px 0px 32px 0px #0000001a;
+}
+
+.option {
+  border-bottom: 1px solid $lightgrey-color;
+  cursor: pointer;
+  padding-block: 12px;
+  &-isActive {
+    color: $primary-color;
+  }
+  &:hover {
+    color: $secondary-color;
+    .icon {
+      fill: $secondary-color;
+    }
+  }
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.icon {
+  fill: $grey-color;
+  width: 16px;
+  height: 16px;
+  &-isActive {
+    fill: $primary-color;
+  }
+}
