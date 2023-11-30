@@ -34,4 +34,3 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     </Stack>
   )
 );
-

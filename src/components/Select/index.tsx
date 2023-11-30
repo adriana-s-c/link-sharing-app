@@ -22,12 +22,44 @@ type Option = {
   value: string;
 };
 
+const options = [
+  { icon: <Github />, value: "Github" },
+  { icon: <Facebook />, value: "Facebook" },
+  { icon: <LinkedIn />, value: "LinkedIn" },
+  { icon: <Youtube />, value: "Youtube" },
+  { icon: <Gitlab />, value: "GitLab" },
+  { icon: <FrontendMentor />, value: "FrontendMentor" },
+  { icon: <Devto />, value: "Devto" },
+  { icon: <Twitter />, value: "Twitter" },
+  { icon: <Codewars />, value: "Codewars" },
+  { icon: <FreeCodeCamp />, value: "FreeCodeCamp" },
+  { icon: <Hashnode />, value: "Hashnode" },
+  { icon: <StackOverflow />, value: "StackOverflow" },
+  { icon: <Twitch />, value: "Twitch" },
+];
+
 export function Select() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedOption, setSelectedOption] = React.useState<Option>({
     icon: <Github />,
     value: "Github",
   });
+
+  const selectRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, []);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -40,24 +72,8 @@ export function Select() {
 
   const matchingPlatform = (option: string) => option === selectedOption.value;
 
-  const options = [
-    { icon: <Github />, value: "Github" },
-    { icon: <Facebook />, value: "Facebook" },
-    { icon: <LinkedIn />, value: "LinkedIn" },
-    { icon: <Youtube />, value: "Youtube" },
-    { icon: <Gitlab />, value: "GitLab" },
-    { icon: <FrontendMentor />, value: "FrontendMentor" },
-    { icon: <Devto />, value: "Devto" },
-    { icon: <Twitter />, value: "Twitter" },
-    { icon: <Codewars />, value: "Codewars" },
-    { icon: <FreeCodeCamp />, value: "FreeCodeCamp" },
-    { icon: <Hashnode />, value: "Hashnode" },
-    { icon: <StackOverflow />, value: "StackOverflow" },
-    { icon: <Twitch />, value: "Twitch" },
-  ];
-
   return (
-    <div>
+    <div className={styles.relative} ref={selectRef}>
       <Stack
         className={
           isOpen ? ` ${styles.box} ${styles[`box-isOpen`]}` : styles.box

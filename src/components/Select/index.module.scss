@@ -1,5 +1,9 @@
 @import "../../variables.scss";
 
+.relative {
+  position: relative;
+}
+
 .box {
   border: 1px solid $lightgrey-color;
   padding: 12px 16px 12px 16px;
@@ -15,6 +19,11 @@
 }
 
 .options {
+  height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
   margin-top: 16px;
   background-color: $white-color;
   border: 1px solid $lightgrey-color;

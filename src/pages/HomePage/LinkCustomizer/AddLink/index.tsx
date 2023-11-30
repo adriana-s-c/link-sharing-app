@@ -3,6 +3,7 @@ import { Stack } from "../../../../components/Stack";
 import { ReactComponent as Icon } from "../../../../images/icon-drag-and-drop.svg";
 import { Text } from "../../../../components/Text";
 import { Select } from "../../../../components/Select";
+import { Input } from "../../../../components/Input";
 
 export function AddLink() {
   return (
@@ -29,6 +30,12 @@ export function AddLink() {
         </Text>
         <Select />
       </Stack>
+      <Input
+        title="Link"
+        id="link"
+        icon="link"
+        placeholder="e.g. https://www.github.com/johnappleseed"
+      />
     </Stack>
   );
 }
