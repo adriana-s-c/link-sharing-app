@@ -1,48 +1,20 @@
 import styles from "./index.module.scss";
 import * as React from "react";
 import { ReactComponent as Arrow } from "../../images/icon-chevron-down.svg";
-import { ReactComponent as Github } from "../../images/icon-github.svg";
-import { ReactComponent as Youtube } from "../../images/icon-youtube.svg";
-import { ReactComponent as LinkedIn } from "../../images/icon-linkedin.svg";
-import { ReactComponent as Facebook } from "../../images/icon-facebook.svg";
-import { ReactComponent as Gitlab } from "../../images/icon-gitlab.svg";
-import { ReactComponent as FrontendMentor } from "../../images/icon-frontend-mentor.svg";
-import { ReactComponent as Twitter } from "../../images/icon-twitter.svg";
-import { ReactComponent as Devto } from "../../images/icon-devto.svg";
-import { ReactComponent as Codewars } from "../../images/icon-codewars.svg";
-import { ReactComponent as FreeCodeCamp } from "../../images/icon-freecodecamp.svg";
-import { ReactComponent as Hashnode } from "../../images/icon-hashnode.svg";
-import { ReactComponent as StackOverflow } from "../../images/icon-stack-overflow.svg";
-import { ReactComponent as Twitch } from "../../images/icon-twitch.svg";
 import { Text } from "../Text";
 import { Stack } from "../Stack";
+import { OptionItem } from "./OptionItem";
 
 type Option = {
   icon: JSX.Element;
   value: string;
 };
 
-const options = [
-  { icon: <Github />, value: "Github" },
-  { icon: <Facebook />, value: "Facebook" },
-  { icon: <LinkedIn />, value: "LinkedIn" },
-  { icon: <Youtube />, value: "Youtube" },
-  { icon: <Gitlab />, value: "GitLab" },
-  { icon: <FrontendMentor />, value: "FrontendMentor" },
-  { icon: <Devto />, value: "Devto" },
-  { icon: <Twitter />, value: "Twitter" },
-  { icon: <Codewars />, value: "Codewars" },
-  { icon: <FreeCodeCamp />, value: "FreeCodeCamp" },
-  { icon: <Hashnode />, value: "Hashnode" },
-  { icon: <StackOverflow />, value: "StackOverflow" },
-  { icon: <Twitch />, value: "Twitch" },
-];
-
-export function Select() {
+export function Select({ options }: { options: Option[] }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedOption, setSelectedOption] = React.useState<Option>({
-    icon: <Github />,
-    value: "Github",
+    icon: options[0].icon,
+    value: options[0].value,
   });
 
   const selectRef = React.useRef<HTMLDivElement>(null);
@@ -70,7 +42,7 @@ export function Select() {
     setIsOpen(false);
   };
 
-  const matchingPlatform = (option: string) => option === selectedOption.value;
+  const isSelectedOption = (option: string) => option === selectedOption.value;
 
   return (
     <div className={styles.relative} ref={selectRef}>
@@ -96,25 +68,12 @@ export function Select() {
       {isOpen && (
         <Stack orientation="vertical" className={styles.options} gap="12px">
           {options.map((option) => (
-            <div
-              key={option.value}
+            <OptionItem
+              icon={option.icon}
+              value={option.value}
+              isActive={isSelectedOption(option.value)}
               onClick={() => handleOptionClick(option)}
-              className={
-                matchingPlatform(option.value)
-                  ? `${styles.option} ${styles[`option-isActive`]}`
-                  : styles.option
-              }
-            >
-              <Stack gap="12px" align="center">
-                {option.icon &&
-                  React.cloneElement(option.icon, {
-                    className: matchingPlatform(option.value)
-                      ? `${styles.icon} ${styles[`icon-isActive`]}`
-                      : styles.icon,
-                  })}
-                {option.value}
-              </Stack>
-            </div>
+            />
           ))}
         </Stack>
       )}
