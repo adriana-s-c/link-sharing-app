@@ -4,6 +4,7 @@ import { NavBar } from "./NavBar";
 import { Phone } from "./Phone";
 import { LinkCustomizer } from "./LinkCustomizer";
 import { ProfileDetails } from "./ProfileDetails";
+import { Outlet } from "react-router-dom";
 
 export function HomePage() {
   return (
@@ -12,8 +13,7 @@ export function HomePage() {
       <Stack orientation="horizontal" gap="24px">
         <Phone />
         <div className={styles.container}>
-          <LinkCustomizer />
-          {/* <ProfileDetails /> */}
+          <Outlet />
         </div>
       </Stack>
     </Stack>
