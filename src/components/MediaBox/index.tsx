@@ -49,6 +49,7 @@ function getIcon(name: string) {
 }
 
 type Props = {
+  className?: string;
   name:
     | "Github"
     | "Youtube"
@@ -65,10 +66,10 @@ type Props = {
     | "StackOverflow";
 };
 
-export function MediaBox({ name }: Props) {
+export function MediaBox({ name, className }: Props) {
   return (
     <Stack
-      className={clsx(styles.box, name && styles[`box-${name}`])}
+      className={clsx(styles.box, name && styles[`box-${name}`], className)}
       align="center"
       spacing="between"
     >
