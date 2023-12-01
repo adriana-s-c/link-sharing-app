@@ -6,3 +6,34 @@
   padding-block: 101px;
   border-radius: $border-radius-m;
 }
+
+.position {
+  position: relative;
+}
+
+.mediabox {
+  position: absolute;
+  width: 237px;
+  height: 44px;
+  box-sizing: border-box;
+  &:first-of-type {
+    top: 278px;
+    left: 35px;
+  }
+  &:nth-of-type(2) {
+    top: 342px;
+    left: 35px;
+  }
+  &:nth-of-type(3) {
+    top: 406px;
+    left: 35px;
+  }
+  &:nth-of-type(4) {
+    top: 470px;
+    left: 35px;
+  }
+  &:nth-of-type(5) {
+    top: 534px;
+    left: 35px;
+  }
+}
