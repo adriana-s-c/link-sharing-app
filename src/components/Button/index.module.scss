@@ -41,14 +41,13 @@
   &-active {
     color: $primary-color;
     background-color: $third-color;
+    .icon {
+      fill: $primary-color;
+    }
   }
 }
 
 .icon {
-  fill: $primary-color;
-}
-
-.iconGrey {
   fill: $grey-color;
 }
 

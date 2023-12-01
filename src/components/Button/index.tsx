@@ -18,9 +18,9 @@ function getIcon(name: string) {
     case "link":
       return <LinkIcon className={styles.icon} />;
     case "profile":
-      return <ProfileIcon className={styles.iconGrey} />;
+      return <ProfileIcon className={styles.icon} />;
     case "upload":
-      return <UploadIcon className={styles.iconGrey} />;
+      return <UploadIcon className={styles.icon} />;
   }
 }
 
