@@ -3,6 +3,7 @@ import { Input } from "../../../components/Input";
 import { Stack } from "../../../components/Stack";
 import { Text } from "../../../components/Text";
 import { Button } from "../../../components/Button";
+import { Link } from "react-router-dom";
 
 export function LoginForm() {
   return (
@@ -34,9 +35,11 @@ export function LoginForm() {
         <Text type="body" size="m" color="grey">
           Don’t have an account?
         </Text>
-        <Text type="body" size="m" color="purple">
-          Create account
-        </Text>
+        <Link to="/createaccount">
+          <Text type="body" size="m" color="purple">
+            Create account
+          </Text>
+        </Link>
       </Stack>
     </Stack>
   );
