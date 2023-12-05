@@ -4,18 +4,16 @@ import { ReactComponent as Arrow } from "../../images/icon-chevron-down.svg";
 import { Text } from "../Text";
 import { Stack } from "../Stack";
 import { OptionItem } from "./OptionItem";
+import { Option } from "../../context";
 
-type Option = {
-  icon: JSX.Element;
-  value: string;
+type Props = {
+  options: Option[];
+  selectedOption: any;
+  setSelectedOption: any;
 };
 
-export function Select({ options }: { options: Option[] }) {
+export function Select({ options, selectedOption, setSelectedOption }: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedOption, setSelectedOption] = React.useState<Option>({
-    icon: options[0].icon,
-    value: options[0].value,
-  });
 
   const selectRef = React.useRef<HTMLDivElement>(null);
 
@@ -69,6 +67,7 @@ export function Select({ options }: { options: Option[] }) {
         <Stack orientation="vertical" className={styles.options} gap="12px">
           {options.map((option) => (
             <OptionItem
+              key={option.value}
               icon={option.icon}
               value={option.value}
               isActive={isSelectedOption(option.value)}
