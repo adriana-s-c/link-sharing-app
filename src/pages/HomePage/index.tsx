@@ -4,7 +4,7 @@ import { Stack } from "../../components/Stack";
 import { NavBar } from "./NavBar";
 import { Phone } from "./Phone";
 import { Outlet } from "react-router-dom";
-import { UserLinkDataContext } from "../../context";
+import { OptionsProvider, UserLinkDataContext } from "../../context";
 import { Option } from "../../context";
 
 export function HomePage() {
@@ -17,7 +17,9 @@ export function HomePage() {
         <Stack orientation="horizontal" gap="24px">
           <Phone />
           <div className={styles.container}>
-            <Outlet />
+            <OptionsProvider>
+              <Outlet />
+            </OptionsProvider>
           </div>
         </Stack>
       </UserLinkDataContext.Provider>
