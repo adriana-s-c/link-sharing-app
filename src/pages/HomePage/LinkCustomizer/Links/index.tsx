@@ -6,17 +6,21 @@ import { useOptions, Option } from "../../../../context";
 
 interface Props {
   addLinkQuantity: number;
+  selectedPlatforms: any;
+  setSelectedPlatforms: any;
 }
 
-export function Links({ addLinkQuantity }: Props) {
+export function Links({
+  addLinkQuantity,
+  selectedPlatforms,
+  setSelectedPlatforms,
+}: Props) {
   const { options } = useOptions();
 
-  const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
-
   const handleOptionChange = (index: number, option: Option) => {
-    const newSelectedOptions = [...selectedOptions];
+    const newSelectedOptions = [...selectedPlatforms];
     newSelectedOptions[index] = option;
-    setSelectedOptions(newSelectedOptions);
+    setSelectedPlatforms(newSelectedOptions);
   };
 
   return (
@@ -24,9 +28,10 @@ export function Links({ addLinkQuantity }: Props) {
       {Array.from({ length: addLinkQuantity }).map((_, index) => (
         <AddLink
           key={index}
+          index={index}
           options={options.filter(
             (option) =>
-              !selectedOptions.some((opt) => opt.value === option.value)
+              !selectedPlatforms.some((opt: any) => opt.value === option.value)
           )}
           onSelectChange={(option: Option) => handleOptionChange(index, option)}
         />

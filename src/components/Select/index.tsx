@@ -18,6 +18,10 @@ export function Select({ options, selectedOption, setSelectedOption }: Props) {
   const selectRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    setSelectedOption(options[0]);
+  }, []);
+
+  React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
         selectRef.current &&
