@@ -4,15 +4,12 @@ import { Stack } from "../../components/Stack";
 import { NavBar } from "./NavBar";
 import { Phone } from "./Phone";
 import { Outlet } from "react-router-dom";
-import { OptionsProvider, UserLinkDataContext } from "../../context";
-import { Option } from "../../context";
+import { OptionsProvider, UserLinkDataProvider } from "../../context";
 
 export function HomePage() {
-  const [userLinkData, setUserLinkData] = React.useState<Option[]>([]);
-
   return (
     <Stack orientation="vertical" className={styles.box} gap="24px">
-      <UserLinkDataContext.Provider value={{ userLinkData, setUserLinkData }}>
+      <UserLinkDataProvider>
         <NavBar />
         <Stack orientation="horizontal" gap="24px">
           <Phone />
@@ -22,7 +19,7 @@ export function HomePage() {
             </OptionsProvider>
           </div>
         </Stack>
-      </UserLinkDataContext.Provider>
+      </UserLinkDataProvider>
     </Stack>
   );
 }

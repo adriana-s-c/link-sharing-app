@@ -5,34 +5,27 @@ import { Text } from "../../../components/Text";
 import { Button } from "../../../components/Button";
 import { SaveDivider } from "../SaveComponent";
 import { GetStarted } from "./GetStarted";
-import { AddLink } from "./AddLink";
-
-import {
-  UserLinkDataContext,
-  Option,
-  OptionsProvider,
-  useOptions,
-} from "../../../context";
+import { Option, UserLinkDataContext } from "../../../context";
 import { Links } from "./Links";
 
 type UserLinkData = Option[];
 
 export function LinkCustomizer() {
   const [addLinkQuantity, setAddLinkQuantity] = React.useState(1);
-  const { selectedOption } = useOptions();
+  const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>(
+    []
+  );
   const { userLinkData, setUserLinkData } =
     React.useContext(UserLinkDataContext);
 
   const handleSubmit = () => {
-    setUserLinkData((prevUserLinkData: UserLinkData) => [
-      ...(prevUserLinkData || []),
-      selectedOption,
-    ]);
+    setUserLinkData(selectedPlatforms);
   };
 
   const handleAddLink = () => {
     setAddLinkQuantity(addLinkQuantity + 1);
   };
+
   return (
     <Stack orientation="vertical" className={styles.fullheight}>
       <Stack orientation="vertical" className={styles.box}>
@@ -56,8 +49,11 @@ export function LinkCustomizer() {
                 + Add new link
               </Button>
             </div>
-            {/* <GetStarted /> */}
-            <Links addLinkQuantity={addLinkQuantity} />
+            <Links
+              addLinkQuantity={addLinkQuantity}
+              selectedPlatforms={selectedPlatforms}
+              setSelectedPlatforms={setSelectedPlatforms}
+            />
           </Stack>
         </Stack>
       </Stack>

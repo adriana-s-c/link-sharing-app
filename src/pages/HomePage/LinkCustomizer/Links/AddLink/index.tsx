@@ -12,27 +12,30 @@ import {
 } from "../../../../../context";
 
 interface Props {
+  index: number;
   options: Option[];
   onSelectChange: (option: Option) => void;
 }
 
-export function AddLink({ options, onSelectChange }: Props) {
+export function AddLink({ index, options, onSelectChange }: Props) {
   const [selectedOption, setSelectedOption] = React.useState<Option>(
     options[0]
   );
 
   const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLink = event.target.value;
-    setSelectedOption({
-      ...selectedOption,
+    setSelectedOption((prevSelectedOption) => ({
+      ...prevSelectedOption,
       link: newLink,
-    });
+    }));
+    onSelectChange({ ...selectedOption, link: newLink });
   };
 
   const handleSelectChange = (option: Option) => {
     onSelectChange(option);
     setSelectedOption(option);
   };
+
   return (
     <Stack orientation="vertical" className={styles.box} gap="12px">
       <Stack
@@ -44,7 +47,7 @@ export function AddLink({ options, onSelectChange }: Props) {
         <Stack align="center" gap="8px">
           <Icon />
           <Text type="heading" size="s" color="grey">
-            Link #1
+            Link #{index + 1}
           </Text>
         </Stack>
         <Text type="body" size="m" color="grey">

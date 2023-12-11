@@ -27,11 +27,21 @@ export const UserLinkDataContext = React.createContext<{
   setUserLinkData: () => {},
 });
 
+export const UserLinkDataProvider: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
+  const [userLinkData, setUserLinkData] = React.useState<Option[]>([]);
+
+  return (
+    <UserLinkDataContext.Provider value={{ userLinkData, setUserLinkData }}>
+      {children}
+    </UserLinkDataContext.Provider>
+  );
+};
+
 type OptionsContextType = {
   options: Option[];
-  selectedOption: Option;
   setOptions: React.Dispatch<React.SetStateAction<Option[]>>;
-  setSelectedOption: React.Dispatch<React.SetStateAction<Option>>;
 };
 
 export const OptionsContext = React.createContext<
@@ -58,15 +68,10 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
   ];
 
   const [options, setOptions] = React.useState<Option[]>(initialOptions);
-  const [selectedOption, setSelectedOption] = React.useState<Option>(
-    initialOptions[0]
-  );
 
   const contextValue: OptionsContextType = {
     options,
-    selectedOption,
     setOptions,
-    setSelectedOption,
   };
 
   return (
