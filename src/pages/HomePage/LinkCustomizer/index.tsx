@@ -5,13 +5,12 @@ import { Text } from "../../../components/Text";
 import { Button } from "../../../components/Button";
 import { SaveDivider } from "../SaveComponent";
 import { GetStarted } from "./GetStarted";
-import { Option, UserLinkDataContext, useOptions } from "../../../context";
+import { Option, useUserLinkData, useOptions } from "../../../context";
 import { Links } from "./Links";
-
-type UserLinkData = Option[];
 
 export function LinkCustomizer() {
   const { options } = useOptions();
+  const { setUserLinkData } = useUserLinkData();
   const [filteredOptions, setFilteredOptions] = React.useState(options);
   const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>([
     options[0],
@@ -24,9 +23,6 @@ export function LinkCustomizer() {
     );
     setFilteredOptions(updateOptions);
   }, [options, selectedPlatforms, setFilteredOptions]);
-
-  const { userLinkData, setUserLinkData } =
-    React.useContext(UserLinkDataContext);
 
   const handleSubmit = () => {
     setUserLinkData(selectedPlatforms);
