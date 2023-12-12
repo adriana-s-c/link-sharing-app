@@ -5,16 +5,26 @@ import { Text } from "../../../components/Text";
 import { Button } from "../../../components/Button";
 import { SaveDivider } from "../SaveComponent";
 import { GetStarted } from "./GetStarted";
-import { Option, UserLinkDataContext } from "../../../context";
+import { Option, UserLinkDataContext, useOptions } from "../../../context";
 import { Links } from "./Links";
 
 type UserLinkData = Option[];
 
 export function LinkCustomizer() {
-  const [addLinkQuantity, setAddLinkQuantity] = React.useState(1);
-  const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>(
-    []
-  );
+  const { options } = useOptions();
+  const [filteredOptions, setFilteredOptions] = React.useState(options);
+  const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>([
+    options[0],
+  ]);
+
+  React.useEffect(() => {
+    const updateOptions = options.filter(
+      (option) =>
+        !selectedPlatforms.some((opt: any) => opt.value === option.value)
+    );
+    setFilteredOptions(updateOptions);
+  }, [options, selectedPlatforms, setFilteredOptions]);
+
   const { userLinkData, setUserLinkData } =
     React.useContext(UserLinkDataContext);
 
@@ -22,8 +32,13 @@ export function LinkCustomizer() {
     setUserLinkData(selectedPlatforms);
   };
 
-  const handleAddLink = () => {
-    setAddLinkQuantity(addLinkQuantity + 1);
+  const handleAddPlatform = () => {
+    if (filteredOptions.length > 0) {
+      setSelectedPlatforms((prevSelectedPlatforms) => [
+        ...prevSelectedPlatforms,
+        filteredOptions[0],
+      ]);
+    }
   };
 
   return (
@@ -45,15 +60,20 @@ export function LinkCustomizer() {
             className={styles.fullheight}
           >
             <div>
-              <Button colorScheme="secondary" onClick={handleAddLink}>
+              <Button colorScheme="secondary" onClick={handleAddPlatform}>
                 + Add new link
               </Button>
             </div>
-            <Links
-              addLinkQuantity={addLinkQuantity}
-              selectedPlatforms={selectedPlatforms}
-              setSelectedPlatforms={setSelectedPlatforms}
-            />
+            {selectedPlatforms.length === 0 ? (
+              <GetStarted />
+            ) : (
+              <Links
+                filteredOptions={filteredOptions}
+                setFilteredOptions={setFilteredOptions}
+                selectedPlatforms={selectedPlatforms}
+                setSelectedPlatforms={setSelectedPlatforms}
+              />
+            )}
           </Stack>
         </Stack>
       </Stack>

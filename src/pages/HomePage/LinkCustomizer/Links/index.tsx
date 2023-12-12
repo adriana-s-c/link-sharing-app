@@ -2,38 +2,43 @@ import styles from "./index.module.scss";
 import * as React from "react";
 import { Stack } from "../../../../components/Stack";
 import { AddLink } from "./AddLink";
-import { useOptions, Option } from "../../../../context";
+import { Option } from "../../../../context";
 
 interface Props {
-  addLinkQuantity: number;
   selectedPlatforms: any;
   setSelectedPlatforms: any;
+  filteredOptions: any;
+  setFilteredOptions: any;
 }
 
 export function Links({
-  addLinkQuantity,
   selectedPlatforms,
   setSelectedPlatforms,
+  filteredOptions,
 }: Props) {
-  const { options } = useOptions();
-
   const handleOptionChange = (index: number, option: Option) => {
     const newSelectedOptions = [...selectedPlatforms];
     newSelectedOptions[index] = option;
     setSelectedPlatforms(newSelectedOptions);
   };
 
+  const handleRemove = (option: any) => {
+    const newSelectedPlatforms = selectedPlatforms.filter(
+      (platform: any) => platform.value !== option
+    );
+    setSelectedPlatforms(newSelectedPlatforms);
+  };
+
   return (
     <Stack orientation="vertical" className={styles.box} gap="24px">
-      {Array.from({ length: addLinkQuantity }).map((_, index) => (
+      {selectedPlatforms.map((platform: any, index: any) => (
         <AddLink
           key={index}
           index={index}
-          options={options.filter(
-            (option) =>
-              !selectedPlatforms.some((opt: any) => opt.value === option.value)
-          )}
+          platform={platform}
+          filteredOptions={filteredOptions}
           onSelectChange={(option: Option) => handleOptionChange(index, option)}
+          handleRemove={handleRemove}
         />
       ))}
     </Stack>

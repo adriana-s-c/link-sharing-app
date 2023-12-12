@@ -9,17 +9,13 @@ import { Option } from "../../context";
 type Props = {
   options: Option[];
   selectedOption: any;
-  setSelectedOption: any;
+  setSelectedOption?: any;
 };
 
 export function Select({ options, selectedOption, setSelectedOption }: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const selectRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    setSelectedOption(options[0]);
-  }, []);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
