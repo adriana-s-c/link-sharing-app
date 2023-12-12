@@ -27,9 +27,9 @@ function getIcon(name: string) {
       return <LinkedIn className={styles.icon} />;
     case "Facebook":
       return <Facebook className={styles.icon} />;
-    case "Gitlab":
+    case "GitLab":
       return <Gitlab className={styles.icon} />;
-    case "FrontendMentor":
+    case "Frontend Mentor":
       return <FrontendMentor className={styles.icon} />;
     case "Twitter":
       return <Twitter className={styles.icon} />;
@@ -39,7 +39,7 @@ function getIcon(name: string) {
       return <Devto className={styles.icon} />;
     case "Codewars":
       return <Codewars className={styles.icon} />;
-    case "freeCodeCamp":
+    case "FreeCodeCamp":
       return <FreeCodeCamp className={styles.icon} />;
     case "Hashnode":
       return <Hashnode className={styles.icon} />;
@@ -50,20 +50,7 @@ function getIcon(name: string) {
 
 type Props = {
   className?: string;
-  name:
-    | "Github"
-    | "Youtube"
-    | "LinkedIn"
-    | "Gitlab"
-    | "Facebook"
-    | "FrontendMentor"
-    | "Twitter"
-    | "Twitch"
-    | "Devto"
-    | "Codewars"
-    | "freeCodeCamp"
-    | "Hashnode"
-    | "StackOverflow";
+  name: string;
 };
 
 export function MediaBox({ name, className }: Props) {
@@ -78,7 +65,7 @@ export function MediaBox({ name, className }: Props) {
         <Text
           type="body"
           size="m"
-          color={name && name === "FrontendMentor" ? "black" : "white"}
+          color={name && name === "Frontend Mentor" ? "black" : "white"}
         >
           {name}
         </Text>

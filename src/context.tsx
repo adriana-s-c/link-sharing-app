@@ -19,6 +19,16 @@ export type Option = {
   link?: string;
 };
 
+export const useUserLinkData = () => {
+  const context = React.useContext(UserLinkDataContext);
+  if (!context) {
+    throw new Error(
+      "useUserLinkData must be used within a UserLinkDataProvider"
+    );
+  }
+  return context;
+};
+
 export const UserLinkDataContext = React.createContext<{
   userLinkData: Option[];
   setUserLinkData: React.Dispatch<React.SetStateAction<Option[]>>;
@@ -57,7 +67,7 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
     { icon: <LinkedIn />, value: "LinkedIn" },
     { icon: <Youtube />, value: "Youtube" },
     { icon: <Gitlab />, value: "GitLab" },
-    { icon: <FrontendMentor />, value: "FrontendMentor" },
+    { icon: <FrontendMentor />, value: "Frontend Mentor" },
     { icon: <Devto />, value: "Devto" },
     { icon: <Twitter />, value: "Twitter" },
     { icon: <Codewars />, value: "Codewars" },
