@@ -8,23 +8,26 @@ import { LoginForm } from "./pages/login/LoginForm";
 import { CreateAccount } from "./pages/login/CreateAccount";
 import { LinkCustomizer } from "./pages/HomePage/LinkCustomizer";
 import { ProfileDetails } from "./pages/HomePage/ProfileDetails";
+import { UserLinkDataProvider } from "./context";
 
 function App() {
   return (
     <BrowserRouter>
-      <Stack align="center" spacing="center" className={styles.box}>
-        <Routes>
-          <Route path="home" element={<HomePage />}>
-            <Route index element={<LinkCustomizer />} />
-            <Route path="profile" element={<ProfileDetails />} />
-          </Route>
-          <Route path="/" element={<EntryPage />}>
-            <Route index element={<LoginForm />} />
-            <Route path="createaccount" element={<CreateAccount />} />
-          </Route>
-          <Route path="/preview" element={<PreviewPage />} />
-        </Routes>
-      </Stack>
+      <UserLinkDataProvider>
+        <Stack align="center" spacing="center" className={styles.box}>
+          <Routes>
+            <Route path="home" element={<HomePage />}>
+              <Route index element={<LinkCustomizer />} />
+              <Route path="profile" element={<ProfileDetails />} />
+            </Route>
+            <Route path="/" element={<EntryPage />}>
+              <Route index element={<LoginForm />} />
+              <Route path="createaccount" element={<CreateAccount />} />
+            </Route>
+            <Route path="/preview" element={<PreviewPage />} />
+          </Routes>
+        </Stack>
+      </UserLinkDataProvider>
     </BrowserRouter>
   );
 }

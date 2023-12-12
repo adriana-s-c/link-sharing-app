@@ -5,7 +5,7 @@ import { useUserLinkData } from "../../../context";
 
 export function Phone() {
   const { userLinkData } = useUserLinkData();
-
+  console.log(userLinkData);
   return (
     <div className={styles.box}>
       <div className={styles.position}>
