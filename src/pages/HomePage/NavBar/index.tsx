@@ -32,7 +32,9 @@ export function NavBar() {
         </Link>
       </Stack>
       <Stack>
-        <Button colorScheme="secondary">Preview</Button>
+        <Link to="/preview">
+          <Button colorScheme="secondary">Preview</Button>
+        </Link>
       </Stack>
     </Stack>
   );
