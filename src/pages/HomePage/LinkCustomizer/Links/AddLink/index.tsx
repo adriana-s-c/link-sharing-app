@@ -5,35 +5,30 @@ import { ReactComponent as Icon } from "../../../../../images/icon-drag-and-drop
 import { Text } from "../../../../../components/Text";
 import { Select } from "../../../../../components/Select";
 import { Input } from "../../../../../components/Input";
-import {
-  Option,
-  UserLinkDataContext,
-  useOptions,
-} from "../../../../../context";
+import { Option } from "../../../../../context";
 
 interface Props {
   index: number;
-  options: Option[];
+  filteredOptions: Option[];
   onSelectChange: (option: Option) => void;
+  handleRemove: any;
+  platform: any;
 }
 
-export function AddLink({ index, options, onSelectChange }: Props) {
-  const [selectedOption, setSelectedOption] = React.useState<Option>(
-    options[0]
-  );
-
+export function AddLink({
+  index,
+  filteredOptions,
+  onSelectChange,
+  handleRemove,
+  platform,
+}: Props) {
   const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLink = event.target.value;
-    setSelectedOption((prevSelectedOption) => ({
-      ...prevSelectedOption,
-      link: newLink,
-    }));
-    onSelectChange({ ...selectedOption, link: newLink });
+    onSelectChange({ ...platform, link: newLink });
   };
 
   const handleSelectChange = (option: Option) => {
     onSelectChange(option);
-    setSelectedOption(option);
   };
 
   return (
@@ -50,17 +45,22 @@ export function AddLink({ index, options, onSelectChange }: Props) {
             Link #{index + 1}
           </Text>
         </Stack>
-        <Text type="body" size="m" color="grey">
-          Remove
-        </Text>
+        <button
+          onClick={() => handleRemove(platform.value)}
+          className={styles.button}
+        >
+          <Text type="body" size="m" color="grey">
+            Remove
+          </Text>
+        </button>
       </Stack>
       <Stack orientation="vertical">
         <Text type="body" size="s">
           Platform
         </Text>
         <Select
-          options={options}
-          selectedOption={selectedOption}
+          options={filteredOptions}
+          selectedOption={platform}
           setSelectedOption={handleSelectChange}
         />
       </Stack>
@@ -69,7 +69,7 @@ export function AddLink({ index, options, onSelectChange }: Props) {
         id="link"
         icon="link"
         placeholder="e.g. https://www.github.com/johnappleseed"
-        value={selectedOption.link || ""}
+        value={platform.link || ""}
         onChange={handleLinkChange}
       />
     </Stack>
