@@ -16,6 +16,7 @@ import { ReactComponent as Twitch } from "./images/icon-twitch.svg";
 export type Option = {
   icon: JSX.Element;
   value: string;
+  placeholder: string;
   link?: string;
 };
 
@@ -62,19 +63,71 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const initialOptions: Option[] = [
-    { icon: <Github />, value: "Github" },
-    { icon: <Facebook />, value: "Facebook" },
-    { icon: <LinkedIn />, value: "LinkedIn" },
-    { icon: <Youtube />, value: "Youtube" },
-    { icon: <Gitlab />, value: "GitLab" },
-    { icon: <FrontendMentor />, value: "Frontend Mentor" },
-    { icon: <Devto />, value: "Devto" },
-    { icon: <Twitter />, value: "Twitter" },
-    { icon: <Codewars />, value: "Codewars" },
-    { icon: <FreeCodeCamp />, value: "FreeCodeCamp" },
-    { icon: <Hashnode />, value: "Hashnode" },
-    { icon: <StackOverflow />, value: "StackOverflow" },
-    { icon: <Twitch />, value: "Twitch" },
+    {
+      icon: <Github />,
+      value: "Github",
+      placeholder: "e.g. https://www.github.com/johnappleseed",
+    },
+    {
+      icon: <Facebook />,
+      value: "Facebook",
+      placeholder: "e.g. https://www.facebook.com/John.Appleseed",
+    },
+    {
+      icon: <LinkedIn />,
+      value: "LinkedIn",
+      placeholder: "e.g. https://www.linkedin.com/in/john-appleseed/",
+    },
+    {
+      icon: <Youtube />,
+      value: "Youtube",
+      placeholder: "e.g. https://www.youtube.com/@John_Appleseed",
+    },
+    {
+      icon: <Gitlab />,
+      value: "GitLab",
+      placeholder: "e.g. https://www.gitlab.com/johnappleseed",
+    },
+    {
+      icon: <FrontendMentor />,
+      value: "Frontend Mentor",
+      placeholder: "e.g. https://www.frontendmentor.io/profile/john-appleseed",
+    },
+    {
+      icon: <Devto />,
+      value: "Devto",
+      placeholder: "e.g. https://dev.to/john-appleseed",
+    },
+    {
+      icon: <Twitter />,
+      value: "Twitter",
+      placeholder: "e.g https://twitter.com/JohnAppleseed",
+    },
+    {
+      icon: <Codewars />,
+      value: "Codewars",
+      placeholder: "e.g. https://www.codewars.com/users/johnappleseed",
+    },
+    {
+      icon: <FreeCodeCamp />,
+      value: "FreeCodeCamp",
+      placeholder: "e.g. https://www.freecodecamp.org/johnappleseed",
+    },
+    {
+      icon: <Hashnode />,
+      value: "Hashnode",
+      placeholder: "e.g. https://hashnode.com/john.appleseed",
+    },
+    {
+      icon: <StackOverflow />,
+      value: "StackOverflow",
+      placeholder: "e.g. https://stackoverflow.com/users/johnappleseed",
+    },
+    {
+      icon: <Twitch />,
+      value: "Twitch",
+      placeholder: "e.g. https://www.twitch.tv/johnappleseed",
+    },
   ];
 
   const [options, setOptions] = React.useState<Option[]>(initialOptions);

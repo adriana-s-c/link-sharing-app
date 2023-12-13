@@ -68,7 +68,7 @@ export function AddLink({
         title="Link"
         id="link"
         icon="link"
-        placeholder="e.g. https://www.github.com/johnappleseed"
+        placeholder={platform.placeholder}
         value={platform.link || ""}
         onChange={handleLinkChange}
       />
