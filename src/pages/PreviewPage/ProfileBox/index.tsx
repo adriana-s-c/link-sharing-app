@@ -6,7 +6,7 @@ import { useUserLinkData } from "../../../context";
 
 export function ProfileBox() {
   const { userLinkData } = useUserLinkData();
-  console.log(userLinkData);
+
   return (
     <Stack orientation="vertical" className={styles.box} gap="56px">
       <ProfileData />
