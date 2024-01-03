@@ -9,12 +9,16 @@ interface Props {
   setSelectedPlatforms: any;
   filteredOptions: any;
   setFilteredOptions: any;
+  errors: any;
+  control: any;
 }
 
 export function Links({
   selectedPlatforms,
   setSelectedPlatforms,
   filteredOptions,
+  errors,
+  control,
 }: Props) {
   const handleOptionChange = (index: number, option: Option) => {
     const newSelectedOptions = [...selectedPlatforms];
@@ -39,6 +43,8 @@ export function Links({
           filteredOptions={filteredOptions}
           onSelectChange={(option: Option) => handleOptionChange(index, option)}
           handleRemove={handleRemove}
+          errors={errors}
+          control={control}
         />
       ))}
     </Stack>

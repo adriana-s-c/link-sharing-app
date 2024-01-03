@@ -4,6 +4,9 @@
   background-color: $background-color;
   border-radius: $border-radius-m;
   padding: 20px;
+  &:last-child {
+    margin-bottom: 94px;
+  }
 }
 
 .fullWidth {

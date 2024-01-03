@@ -5,7 +5,9 @@
 }
 
 .container {
+  position: relative;
   min-height: 834px;
+  height: 100%;
   background-color: $white-color;
   width: 100%;
   border-radius: $border-radius-m;

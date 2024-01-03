@@ -1,5 +1,4 @@
 import styles from "./index.module.scss";
-import * as React from "react";
 import { Stack } from "../../components/Stack";
 import { NavBar } from "./NavBar";
 import { Phone } from "./Phone";

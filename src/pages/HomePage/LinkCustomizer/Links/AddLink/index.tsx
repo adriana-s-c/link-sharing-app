@@ -6,6 +6,7 @@ import { Text } from "../../../../../components/Text";
 import { Select } from "../../../../../components/Select";
 import { Input } from "../../../../../components/Input";
 import { Option } from "../../../../../context";
+import { Controller } from "react-hook-form";
 
 interface Props {
   index: number;
@@ -13,6 +14,8 @@ interface Props {
   onSelectChange: (option: Option) => void;
   handleRemove: any;
   platform: any;
+  errors: any;
+  control: any;
 }
 
 export function AddLink({
@@ -21,6 +24,8 @@ export function AddLink({
   onSelectChange,
   handleRemove,
   platform,
+  errors,
+  control,
 }: Props) {
   const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newLink = event.target.value;
@@ -64,13 +69,27 @@ export function AddLink({
           setSelectedOption={handleSelectChange}
         />
       </Stack>
-      <Input
-        title="Link"
-        id="link"
-        icon="link"
-        placeholder={platform.placeholder}
-        value={platform.link || ""}
-        onChange={handleLinkChange}
+      <Controller
+        name={`link${index}`}
+        control={control}
+        defaultValue={platform.link || ""}
+        rules={{
+          required: "Can’t be empty",
+        }}
+        render={({ field }) => (
+          <Input
+            title="Link"
+            id={`link${index}`}
+            icon="link"
+            placeholder={platform.placeholder}
+            value={field.value}
+            onChange={(e) => {
+              field.onChange(e);
+              handleLinkChange(e);
+            }}
+            errors={errors}
+          />
+        )}
       />
     </Stack>
   );
