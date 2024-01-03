@@ -18,6 +18,7 @@ export type Option = {
   value: string;
   placeholder: string;
   link?: string;
+  website?: string;
 };
 
 export const useUserLinkData = () => {
@@ -67,66 +68,79 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
       icon: <Github />,
       value: "Github",
       placeholder: "e.g. https://www.github.com/johnappleseed",
+      website: "github.com",
     },
     {
       icon: <Facebook />,
       value: "Facebook",
       placeholder: "e.g. https://www.facebook.com/John.Appleseed",
+      website: "facebook.com",
     },
     {
       icon: <LinkedIn />,
       value: "LinkedIn",
       placeholder: "e.g. https://www.linkedin.com/in/john-appleseed/",
+      website: "linkedin.com",
     },
     {
       icon: <Youtube />,
       value: "Youtube",
       placeholder: "e.g. https://www.youtube.com/@John_Appleseed",
+      website: "youtube.com",
     },
     {
       icon: <Gitlab />,
       value: "GitLab",
       placeholder: "e.g. https://www.gitlab.com/johnappleseed",
+      website: "gitlab.com",
     },
     {
       icon: <FrontendMentor />,
       value: "Frontend Mentor",
       placeholder: "e.g. https://www.frontendmentor.io/profile/john-appleseed",
+      website: "frontendmentor.io",
     },
     {
       icon: <Devto />,
       value: "Devto",
       placeholder: "e.g. https://dev.to/john-appleseed",
+      website: "dev.to",
     },
     {
       icon: <Twitter />,
       value: "Twitter",
       placeholder: "e.g https://twitter.com/JohnAppleseed",
+      website: "twitter.com",
     },
     {
       icon: <Codewars />,
       value: "Codewars",
       placeholder: "e.g. https://www.codewars.com/users/johnappleseed",
+      website: "codewars.com",
     },
     {
       icon: <FreeCodeCamp />,
       value: "FreeCodeCamp",
       placeholder: "e.g. https://www.freecodecamp.org/johnappleseed",
+      website: "freecodecamp.org",
     },
     {
       icon: <Hashnode />,
       value: "Hashnode",
       placeholder: "e.g. https://hashnode.com/john.appleseed",
+      website: "hashnode.com/",
     },
     {
       icon: <StackOverflow />,
       value: "StackOverflow",
       placeholder: "e.g. https://stackoverflow.com/users/johnappleseed",
+      website: "stackoverflow.com",
     },
     {
       icon: <Twitch />,
       value: "Twitch",
       placeholder: "e.g. https://www.twitch.tv/johnappleseed",
+      website: "twitch.tv",
     },
   ];
 
