@@ -36,6 +36,10 @@ export function AddLink({
     onSelectChange(option);
   };
 
+  const validateLink = (value: string) => {
+    return value.includes(platform.website) || "Please check the URL";
+  };
+
   return (
     <Stack orientation="vertical" className={styles.box} gap="12px">
       <Stack
@@ -75,6 +79,7 @@ export function AddLink({
         defaultValue={platform.link || ""}
         rules={{
           required: "Can’t be empty",
+          validate: { validateLink },
         }}
         render={({ field }) => (
           <Input
