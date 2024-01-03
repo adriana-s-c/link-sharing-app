@@ -7,8 +7,14 @@ import { SaveDivider } from "../SaveComponent";
 import { GetStarted } from "./GetStarted";
 import { Option, useUserLinkData, useOptions } from "../../../context";
 import { Links } from "./Links";
+import { useForm } from "react-hook-form";
 
 export function LinkCustomizer() {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const { options } = useOptions();
   const { setUserLinkData } = useUserLinkData();
   const [filteredOptions, setFilteredOptions] = React.useState(options);
@@ -24,7 +30,7 @@ export function LinkCustomizer() {
     setFilteredOptions(updateOptions);
   }, [options, selectedPlatforms, setFilteredOptions]);
 
-  const handleSubmit = () => {
+  const onSubmit = () => {
     setUserLinkData(selectedPlatforms);
   };
 
@@ -39,41 +45,49 @@ export function LinkCustomizer() {
 
   return (
     <Stack orientation="vertical" className={styles.fullheight}>
-      <Stack orientation="vertical" className={styles.box}>
-        <Stack orientation="vertical" gap="40px" className={styles.fullheight}>
-          <Stack orientation="vertical" gap="16px">
-            <Text type="heading" size="m">
-              Customize your links
-            </Text>
-            <Text type="body" size="m" color="grey">
-              Add/edit/remove links below and then share all your profiles with
-              the world!
-            </Text>
-          </Stack>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack orientation="vertical" className={styles.box}>
           <Stack
             orientation="vertical"
-            gap="24px"
+            gap="40px"
             className={styles.fullheight}
           >
-            <div>
-              <Button colorScheme="secondary" onClick={handleAddPlatform}>
-                + Add new link
-              </Button>
-            </div>
-            {selectedPlatforms.length === 0 ? (
-              <GetStarted />
-            ) : (
-              <Links
-                filteredOptions={filteredOptions}
-                setFilteredOptions={setFilteredOptions}
-                selectedPlatforms={selectedPlatforms}
-                setSelectedPlatforms={setSelectedPlatforms}
-              />
-            )}
+            <Stack orientation="vertical" gap="16px">
+              <Text type="heading" size="m">
+                Customize your links
+              </Text>
+              <Text type="body" size="m" color="grey">
+                Add/edit/remove links below and then share all your profiles
+                with the world!
+              </Text>
+            </Stack>
+            <Stack
+              orientation="vertical"
+              gap="24px"
+              className={styles.fullheight}
+            >
+              <div>
+                <Button colorScheme="secondary" onClick={handleAddPlatform}>
+                  + Add new link
+                </Button>
+              </div>
+              {selectedPlatforms.length === 0 ? (
+                <GetStarted />
+              ) : (
+                <Links
+                  filteredOptions={filteredOptions}
+                  setFilteredOptions={setFilteredOptions}
+                  selectedPlatforms={selectedPlatforms}
+                  setSelectedPlatforms={setSelectedPlatforms}
+                  errors={errors}
+                  control={control}
+                />
+              )}
+            </Stack>
           </Stack>
         </Stack>
-      </Stack>
-      <SaveDivider handleSubmit={handleSubmit} />
+        <SaveDivider />
+      </form>
     </Stack>
   );
 }
