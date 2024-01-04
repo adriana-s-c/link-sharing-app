@@ -14,3 +14,16 @@
 .width {
   width: 31.5%;
 }
+
+.input {
+  display: none;
+}
+
+.uploadDiv {
+  background-color: $third-color;
+  width: 193px;
+  height: 193px;
+  padding: 61px, 38px, 60px, 39px;
+  border-radius: $border-radius-m;
+  cursor: pointer;
+}
