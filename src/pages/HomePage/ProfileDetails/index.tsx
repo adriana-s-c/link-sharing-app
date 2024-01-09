@@ -1,4 +1,5 @@
 import styles from "./index.module.scss";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { Stack } from "../../../components/Stack";
 import { Text } from "../../../components/Text";
@@ -7,6 +8,8 @@ import { ProfileDetailsForm } from "./ProfileDetailsForm";
 import { ProfilePicture } from "./ProfilePicture";
 
 export function ProfileDetails() {
+  const [userData, setUserData] = React.useState();
+
   const {
     handleSubmit,
     control,
