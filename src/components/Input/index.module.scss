@@ -34,9 +34,19 @@
   background-size: 16px 16px;
   background-position: 16px 50%;
   transition: all 0.3s ease-in;
+  &:focus {
+    transition: all 0.3s ease-in;
+    outline-color: $primary-color;
+    outline-style: solid;
+    outline-width: 1px;
+    box-shadow: 0px 0px 32px 0px #633cff40;
+  }
   &-error {
     border: 1px solid $error-color;
-    padding: 12px 16px 12px 44px;
+    &:focus {
+      outline-color: none;
+      box-shadow: none;
+    }
   }
   &-email {
     background-image: url(../../images/icon-email.svg);
@@ -58,13 +68,6 @@
     background-image: url(../../images/icon-link.svg);
     padding: 12px 16px 12px 44px;
   }
-  &:focus {
-    transition: all 0.3s ease-in;
-    outline-color: $primary-color;
-    outline-style: solid;
-    outline-width: 1px;
-    box-shadow: 0px 0px 32px 0px #633cff40;
-  }
 }
 
 .container {
@@ -74,5 +77,6 @@
 .errorMessage {
   position: absolute;
   right: 0;
-  padding: 12px 16px 12px 44px;
+  padding-right: 16px;
+  padding-block: 12px;
 }
