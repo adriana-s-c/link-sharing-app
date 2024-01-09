@@ -9,16 +9,41 @@ import { ErrorMessage } from "@hookform/error-message";
 type Props = ComponentPropsWithoutRef<"input"> & {
   title: string;
   id: string;
-  icon: string;
+  icon?: string;
+  orientation?: "vertical" | "horizontal";
   errors?: any;
   className?: string;
 };
 
 export const Input = forwardRef<HTMLInputElement, Props>(
-  ({ title, name, id, icon, errors, className, ...inputProps }: Props, ref) => (
-    <Stack orientation="vertical" className={styles.box} gap="1px">
-      <Stack spacing="between" className={styles.center}>
-        <label className={styles.title} htmlFor={id}>
+  (
+    {
+      title,
+      name,
+      id,
+      icon,
+      errors,
+      orientation = "vertical",
+      className,
+      ...inputProps
+    }: Props,
+    ref
+  ) => (
+    <Stack
+      orientation={orientation === "vertical" ? "vertical" : "horizontal"}
+      className={styles.fullWidth}
+      gap="16px"
+      align="center"
+    >
+      <Stack spacing="between" className={styles.width}>
+        <label
+          className={
+            orientation === "vertical"
+              ? styles.titleVertical
+              : styles.titleHorizontal
+          }
+          htmlFor={id}
+        >
           {title}
         </label>
       </Stack>

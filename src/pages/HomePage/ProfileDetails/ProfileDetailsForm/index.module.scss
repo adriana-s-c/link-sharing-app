@@ -9,15 +9,4 @@
   background-color: $background-color;
   padding: 20px;
   border-radius: $border-radius-m;
-  label {
-    width: 55%;
-  }
-  input {
-    width: 100%;
-    border: 1px solid $lightgrey-color;
-    border-radius: $border-radius-s;
-    font-size: $fontsize-m;
-    padding-block: 12px;
-    padding-inline: 16px;
-  }
 }
