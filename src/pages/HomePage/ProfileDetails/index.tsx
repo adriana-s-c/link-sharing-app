@@ -6,9 +6,10 @@ import { Text } from "../../../components/Text";
 import { SaveDivider } from "../SaveComponent";
 import { ProfileDetailsForm } from "./ProfileDetailsForm";
 import { ProfilePicture } from "./ProfilePicture";
+import { useUserContext } from "../../../context";
 
 export function ProfileDetails() {
-  const [userData, setUserData] = React.useState();
+  const { userData, setUserData } = useUserContext();
 
   const {
     handleSubmit,
@@ -16,8 +17,9 @@ export function ProfileDetails() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {
-    console.log("Clicked!");
+  const onSubmit = (data: any) => {
+    console.log("Form data submitted:", data);
+    setUserData(data);
   };
 
   return (

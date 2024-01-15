@@ -3,7 +3,7 @@ import { Stack } from "../../components/Stack";
 import { NavBar } from "./NavBar";
 import { Phone } from "./Phone";
 import { Outlet } from "react-router-dom";
-import { OptionsProvider } from "../../context";
+import { OptionsProvider, UserProvider } from "../../context";
 
 export function HomePage() {
   return (
@@ -12,9 +12,11 @@ export function HomePage() {
       <Stack orientation="horizontal" gap="24px">
         <Phone />
         <div className={styles.container}>
-          <OptionsProvider>
-            <Outlet />
-          </OptionsProvider>
+          <UserProvider>
+            <OptionsProvider>
+              <Outlet />
+            </OptionsProvider>
+          </UserProvider>
         </div>
       </Stack>
     </Stack>
