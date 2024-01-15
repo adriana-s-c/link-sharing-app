@@ -165,3 +165,38 @@ export const useOptions = () => {
   }
   return context;
 };
+
+type UserDataType = {
+  image: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
+type UserContextType = {
+  userData: UserDataType | null;
+  setUserData: React.Dispatch<React.SetStateAction<UserDataType | null>>;
+};
+
+const initialUserData: UserDataType = {
+  image: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+};
+
+const UserContext = React.createContext<UserContextType>({
+  userData: initialUserData,
+  setUserData: () => {},
+});
+
+export const useUserContext = () => React.useContext(UserContext);
+
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const [userData, setUserData] = React.useState<UserDataType | null>(null);
+  return (
+    <UserContext.Provider value={{ userData, setUserData }}>
+      {children}
+    </UserContext.Provider>
+  );
+};

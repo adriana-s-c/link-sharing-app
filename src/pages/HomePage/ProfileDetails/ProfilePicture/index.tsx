@@ -1,33 +1,69 @@
 import styles from "./index.module.scss";
+import * as React from "react";
 import { Stack } from "../../../../components/Stack";
 import { Text } from "../../../../components/Text";
 import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-image.svg";
+import { useUserContext } from "../../../../context";
+import AvatarEditor from "react-avatar-editor";
+
+type EditorProps = {
+  picture: any;
+  setPicture: React.Dispatch<
+    React.SetStateAction<HTMLCanvasElement | string | undefined>
+  >;
+};
+
+function Editor({ picture, setPicture }: EditorProps) {
+  const editorRef = React.useRef<any>(null);
+
+  const handleSave = () => {
+    const canvas = editorRef.current.getImageScaledToCanvas();
+    const dataURL = canvas.toDataURL();
+    setPicture(dataURL);
+  };
+
+  return picture !== undefined ? (
+    <Stack orientation="vertical">
+      {typeof picture === "string" ? (
+        <AvatarEditor ref={editorRef} image={picture} />
+      ) : (
+        <AvatarEditor ref={editorRef} image={picture.toDataURL()} />
+      )}
+      <button type="button" onClick={handleSave}>
+        Done
+      </button>
+    </Stack>
+  ) : null;
+}
 
 export function ProfilePicture() {
+  const { userData, setUserData } = useUserContext();
+  const [picture, setPicture] = React.useState<
+    HTMLCanvasElement | string | undefined | any
+  >(undefined);
+  const [isActive, setIsActive] = React.useState<boolean>(false);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsActive(true);
     const file = e.target.files?.[0];
 
     if (file) {
+      const imageUrl = URL.createObjectURL(file);
       const image = new Image();
-      const reader = new FileReader();
-
-      reader.onload = function (event) {
-        if (event.target) {
-          image.src = event.target.result as string;
-        }
-      };
-
-      reader.readAsDataURL(file);
+      image.src = imageUrl;
+      setPicture(imageUrl);
 
       image.onload = function () {
         const width = image.width;
         const height = image.height;
 
         if (width <= 1024 && height <= 1024) {
-          console.log("Image dimensions are within the limit");
+          console.log(image);
         } else {
           alert("Image dimensions must be below 1024x1024px.");
           e.target.value = "";
+
+          URL.revokeObjectURL(imageUrl);
         }
       };
     }
@@ -67,6 +103,7 @@ export function ProfilePicture() {
             </Stack>
           </label>
         </div>
+        {isActive ? <Editor picture={picture} setPicture={setPicture} /> : null}
         <Text type="body" size="s" color="grey">
           Image must be below 1024x1024px. Use PNG or JPG format.
         </Text>
