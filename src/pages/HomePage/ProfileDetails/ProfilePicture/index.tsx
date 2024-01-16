@@ -4,37 +4,7 @@ import { Stack } from "../../../../components/Stack";
 import { Text } from "../../../../components/Text";
 import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-image.svg";
 import { useUserContext } from "../../../../context";
-import AvatarEditor from "react-avatar-editor";
-
-type EditorProps = {
-  picture: any;
-  setPicture: React.Dispatch<
-    React.SetStateAction<HTMLCanvasElement | string | undefined>
-  >;
-};
-
-function Editor({ picture, setPicture }: EditorProps) {
-  const editorRef = React.useRef<any>(null);
-
-  const handleSave = () => {
-    const canvas = editorRef.current.getImageScaledToCanvas();
-    const dataURL = canvas.toDataURL();
-    setPicture(dataURL);
-  };
-
-  return picture !== undefined ? (
-    <Stack orientation="vertical">
-      {typeof picture === "string" ? (
-        <AvatarEditor ref={editorRef} image={picture} />
-      ) : (
-        <AvatarEditor ref={editorRef} image={picture.toDataURL()} />
-      )}
-      <button type="button" onClick={handleSave}>
-        Done
-      </button>
-    </Stack>
-  ) : null;
-}
+import { ImageEditor } from "./ImageEditor";
 
 export function ProfilePicture() {
   const { userData, setUserData } = useUserContext();
@@ -74,36 +44,63 @@ export function ProfilePicture() {
       orientation="horizontal"
       align="center"
       className={styles.box}
-      gap="24px"
+      gap="16px"
     >
       <Text type="body" size="m" color="grey" className={styles.width}>
         Profile picture
       </Text>
       <Stack gap="24px" align="center">
         <div className={styles.buttonBox}>
-          <input
-            type="file"
-            accept="image/png, image/jpeg"
-            id="imgupload"
-            className={styles.input}
-            onChange={handleImageChange}
-          />
-          <label htmlFor="imgupload">
-            <Stack
-              className={styles.uploadDiv}
-              align="center"
-              spacing="center"
-              orientation="vertical"
-              gap="8px"
-            >
-              <UploadIcon />
-              <Text color="purple" type="heading" size="s">
-                + Upload Image
-              </Text>
-            </Stack>
-          </label>
+          {isActive ? (
+            <ImageEditor
+              picture={picture}
+              setPicture={setPicture}
+              setIsActive={setIsActive}
+            />
+          ) : (
+            <>
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                id="imgupload"
+                className={styles.input}
+                onChange={handleImageChange}
+              />
+              <label htmlFor="imgupload">
+                <Stack
+                  className={styles.uploadDiv}
+                  align="center"
+                  spacing="center"
+                  orientation="vertical"
+                  gap="8px"
+                >
+                  {picture ? (
+                    <img src={picture} alt="Avatar" className={styles.image} />
+                  ) : null}
+                  <Stack
+                    orientation="vertical"
+                    align="center"
+                    gap="8px"
+                    className={styles.content}
+                  >
+                    <UploadIcon
+                      className={
+                        picture ? `${styles[`icon-white`]}` : styles.icon
+                      }
+                    />
+                    <Text
+                      color={picture ? "white" : "purple"}
+                      type="heading"
+                      size="s"
+                    >
+                      {picture ? "Change Image" : "+ Upload Image"}
+                    </Text>
+                  </Stack>
+                </Stack>
+              </label>
+            </>
+          )}
         </div>
-        {isActive ? <Editor picture={picture} setPicture={setPicture} /> : null}
         <Text type="body" size="s" color="grey">
           Image must be below 1024x1024px. Use PNG or JPG format.
         </Text>
