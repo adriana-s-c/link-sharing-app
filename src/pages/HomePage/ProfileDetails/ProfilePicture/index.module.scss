@@ -7,12 +7,14 @@
 }
 
 .buttonBox {
+  position: relative;
   width: 193px;
   height: 193px;
 }
 
 .width {
-  width: 31.5%;
+  width: 100%;
+  max-width: 240px;
 }
 
 .input {
@@ -23,7 +25,25 @@
   background-color: $third-color;
   width: 193px;
   height: 193px;
-  padding: 61px, 38px, 60px, 39px;
   border-radius: $border-radius-m;
   cursor: pointer;
+}
+
+.image {
+  position: absolute;
+  width: 193px;
+  height: 193px;
+  border-radius: $border-radius-m;
+  cursor: pointer;
+}
+
+.icon {
+  fill: $primary-color;
+  &-white {
+    fill: $white-color;
+  }
+}
+
+.content {
+  position: absolute;
 }
