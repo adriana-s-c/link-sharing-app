@@ -6,11 +6,15 @@ import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-ima
 import { useUserContext } from "../../../../context";
 import { ImageEditor } from "./ImageEditor";
 
-export function ProfilePicture() {
+type ProfilePictureProps = {
+  picture: string | undefined;
+  setPicture: React.Dispatch<
+    React.SetStateAction<string | HTMLCanvasElement | undefined>
+  >;
+};
+
+export function ProfilePicture({ picture, setPicture }: ProfilePictureProps) {
   const { userData, setUserData } = useUserContext();
-  const [picture, setPicture] = React.useState<
-    HTMLCanvasElement | string | undefined | any
-  >(undefined);
   const [isActive, setIsActive] = React.useState<boolean>(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +32,6 @@ export function ProfilePicture() {
         const height = image.height;
 
         if (width <= 1024 && height <= 1024) {
-          console.log(image);
         } else {
           alert("Image dimensions must be below 1024x1024px.");
           e.target.value = "";

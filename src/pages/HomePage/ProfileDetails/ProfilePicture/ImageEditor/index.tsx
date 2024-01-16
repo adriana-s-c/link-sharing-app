@@ -36,7 +36,12 @@ export function ImageEditor({
           height={193}
           borderRadius={16}
           className={styles.position}
-          style={{ width: "100%", height: "100%" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            minWidth: "193px",
+            minHight: "193px",
+          }}
         />
       ) : (
         <AvatarEditor ref={editorRef} image={picture.toDataURL()} />
