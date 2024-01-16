@@ -10,14 +10,14 @@ export function HomePage() {
     <Stack orientation="vertical" className={styles.box} gap="24px">
       <NavBar />
       <Stack orientation="horizontal" gap="24px">
-        <Phone />
-        <div className={styles.container}>
-          <UserProvider>
+        <UserProvider>
+          <Phone />
+          <div className={styles.container}>
             <OptionsProvider>
               <Outlet />
             </OptionsProvider>
-          </UserProvider>
-        </div>
+          </div>
+        </UserProvider>
       </Stack>
     </Stack>
   );

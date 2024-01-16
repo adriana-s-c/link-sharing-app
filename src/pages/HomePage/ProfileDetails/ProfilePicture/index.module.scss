@@ -24,7 +24,9 @@
 .uploadDiv {
   background-color: $third-color;
   width: 193px;
+  min-width: 193px;
   height: 193px;
+  min-height: 193px;
   border-radius: $border-radius-m;
   cursor: pointer;
 }
@@ -32,7 +34,9 @@
 .image {
   position: absolute;
   width: 193px;
+  min-width: 193px;
   height: 193px;
+  min-height: 193px;
   border-radius: $border-radius-m;
   cursor: pointer;
 }

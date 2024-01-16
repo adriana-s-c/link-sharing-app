@@ -10,6 +10,9 @@ import { useUserContext } from "../../../context";
 
 export function ProfileDetails() {
   const { userData, setUserData } = useUserContext();
+  const [picture, setPicture] = React.useState<
+    HTMLCanvasElement | string | undefined | any
+  >(undefined);
 
   const {
     handleSubmit,
@@ -18,8 +21,11 @@ export function ProfileDetails() {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log("Form data submitted:", data);
-    setUserData(data);
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      ...data,
+      image: picture,
+    }));
   };
 
   return (
@@ -36,7 +42,7 @@ export function ProfileDetails() {
               </Text>
             </Stack>
             <Stack orientation="vertical" gap="12px">
-              <ProfilePicture />
+              <ProfilePicture picture={picture} setPicture={setPicture} />
               <ProfileDetailsForm errors={errors} control={control} />
             </Stack>
           </Stack>
