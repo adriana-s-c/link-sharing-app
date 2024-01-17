@@ -5,17 +5,56 @@ import { useUserContext, useUserLinkData } from "../../../context";
 import { Text } from "../../../components/Text";
 import { Stack } from "../../../components/Stack";
 
-const isLongName = (firstName: string, lastName: string): "s" | "m" => {
-  const fullNameLength = firstName.length + lastName.length;
-
-  if (fullNameLength <= 14) {
-    return "m";
-  } else {
-    return "s";
-  }
+const isLongName = (firstName?: string, lastName?: string): "s" | "m" => {
+  const fullNameLength = (firstName?.length || 0) + (lastName?.length || 0);
+  return fullNameLength <= 14 ? "m" : "s";
 };
 
-export function Phone() {
+const renderNameText = (
+  userData?: {
+    firstName?: string;
+    lastName?: string;
+  } | null
+) => {
+  if (!userData?.firstName) return null;
+
+  const fullName = `${userData.firstName} ${userData.lastName ?? ""}`;
+
+  return (
+    <Text
+      color="black"
+      type="heading"
+      size={isLongName(userData.firstName, userData.lastName)}
+      className={styles.name}
+    >
+      {fullName}
+    </Text>
+  );
+};
+
+const renderEmailText = (email?: string) => {
+  return email ? (
+    <Text color="black" type="body" size="s" className={styles.email}>
+      {email}
+    </Text>
+  ) : null;
+};
+
+const renderMediaBoxes = (userLinkData?: { value: string }[]) => {
+  return (
+    userLinkData
+      ?.slice(0, 5)
+      .map((platform, index) => (
+        <MediaBox
+          key={index}
+          name={platform.value}
+          className={styles.mediabox}
+        />
+      )) || null
+  );
+};
+
+export const Phone = () => {
   const { userLinkData } = useUserLinkData();
   const { userData } = useUserContext();
 
@@ -27,30 +66,11 @@ export function Phone() {
           <img src={userData.image} alt="Avatar" className={styles.image} />
         )}
         <Stack orientation="vertical" gap="16px">
-          {userData?.firstName && (
-            <Text
-              color="black"
-              type="heading"
-              size={isLongName(userData.firstName, userData.lastName)}
-              className={styles.name}
-            >
-              {`${userData.firstName} ${userData.lastName ?? ""}`}
-            </Text>
-          )}
-          {userData?.email && (
-            <Text color="black" type="body" size="s" className={styles.email}>
-              {userData.email}
-            </Text>
-          )}
+          {renderNameText(userData)}
+          {renderEmailText(userData?.email)}
         </Stack>
-        {userLinkData?.slice(0, 5).map((platform, index) => (
-          <MediaBox
-            key={index}
-            name={platform.value}
-            className={styles.mediabox}
-          />
-        ))}
+        {renderMediaBoxes(userLinkData)}
       </div>
     </div>
   );
-}
+};
