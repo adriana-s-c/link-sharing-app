@@ -178,7 +178,7 @@ type UserContextType = {
   setUserData: React.Dispatch<React.SetStateAction<UserDataType | null>>;
 };
 
-const initialUserData: UserDataType = {
+const initialUserData: UserDataType | null = {
   image: "",
   firstName: "",
   lastName: "",
@@ -193,7 +193,9 @@ const UserContext = React.createContext<UserContextType>({
 export const useUserContext = () => React.useContext(UserContext);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [userData, setUserData] = React.useState<UserDataType | null>(null);
+  const [userData, setUserData] = React.useState<UserDataType | null>(
+    initialUserData
+  );
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       {children}
