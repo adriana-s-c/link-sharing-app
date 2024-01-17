@@ -8,7 +8,7 @@ import { ReactComponent as ProfileIcon } from "../../images/icon-profile-details
 
 type Props = ComponentPropsWithoutRef<"button"> & {
   colorScheme: "primary" | "secondary" | "third" | "active";
-  icon?: any;
+  icon?: string;
   children?: ReactNode;
 };
 

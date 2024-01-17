@@ -13,6 +13,7 @@ export function ProfileDetails() {
   const [picture, setPicture] = React.useState<
     HTMLCanvasElement | string | undefined | any
   >(undefined);
+  const [isEditorActive, setIsEditorActive] = React.useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -42,12 +43,17 @@ export function ProfileDetails() {
               </Text>
             </Stack>
             <Stack orientation="vertical" gap="12px">
-              <ProfilePicture picture={picture} setPicture={setPicture} />
+              <ProfilePicture
+                picture={picture}
+                setPicture={setPicture}
+                isEditorActive={isEditorActive}
+                setIsEditorActive={setIsEditorActive}
+              />
               <ProfileDetailsForm errors={errors} control={control} />
             </Stack>
           </Stack>
         </Stack>
-        <SaveDivider />
+        <SaveDivider disabled={isEditorActive} />
       </form>
     </Stack>
   );

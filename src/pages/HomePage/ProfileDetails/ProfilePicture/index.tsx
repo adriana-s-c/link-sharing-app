@@ -11,14 +11,20 @@ type ProfilePictureProps = {
   setPicture: React.Dispatch<
     React.SetStateAction<string | HTMLCanvasElement | undefined>
   >;
+  isEditorActive: boolean;
+  setIsEditorActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export function ProfilePicture({ picture, setPicture }: ProfilePictureProps) {
+export function ProfilePicture({
+  picture,
+  setPicture,
+  isEditorActive,
+  setIsEditorActive,
+}: ProfilePictureProps) {
   const { userData, setUserData } = useUserContext();
-  const [isActive, setIsActive] = React.useState<boolean>(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsActive(true);
+    setIsEditorActive(true);
     const file = e.target.files?.[0];
 
     if (file) {
@@ -54,11 +60,11 @@ export function ProfilePicture({ picture, setPicture }: ProfilePictureProps) {
       </Text>
       <Stack gap="24px" align="center">
         <div className={styles.buttonBox}>
-          {isActive ? (
+          {isEditorActive ? (
             <ImageEditor
               picture={picture}
               setPicture={setPicture}
-              setIsActive={setIsActive}
+              setIsActive={setIsEditorActive}
             />
           ) : (
             <>
