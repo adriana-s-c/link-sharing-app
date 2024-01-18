@@ -166,7 +166,7 @@ export const useOptions = () => {
   return context;
 };
 
-type UserDataType = {
+export type UserDataType = {
   image: string;
   firstName: string;
   lastName: string;
@@ -193,9 +193,10 @@ const UserContext = React.createContext<UserContextType>({
 export const useUserContext = () => React.useContext(UserContext);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [userData, setUserData] = React.useState<UserDataType | null>(
-    initialUserData
-  );
+  const [userData, setUserData] = React.useState<UserDataType | null>(() => {
+    const storedUserData = localStorage.getItem("userData");
+    return storedUserData ? JSON.parse(storedUserData) : initialUserData;
+  });
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
       {children}

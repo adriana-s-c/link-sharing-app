@@ -3,12 +3,11 @@ import * as React from "react";
 import { Stack } from "../../../../components/Stack";
 import { Text } from "../../../../components/Text";
 import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-image.svg";
-import { useUserContext } from "../../../../context";
 import { ImageEditor } from "./ImageEditor";
 
 type ProfilePictureProps = {
-  picture: string | undefined;
-  setPicture: React.Dispatch<
+  profilePicture: string | undefined;
+  setProfilePicture: React.Dispatch<
     React.SetStateAction<string | HTMLCanvasElement | undefined>
   >;
   isEditorActive: boolean;
@@ -16,13 +15,11 @@ type ProfilePictureProps = {
 };
 
 export function ProfilePicture({
-  picture,
-  setPicture,
+  profilePicture,
+  setProfilePicture,
   isEditorActive,
   setIsEditorActive,
 }: ProfilePictureProps) {
-  const { userData, setUserData } = useUserContext();
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsEditorActive(true);
     const file = e.target.files?.[0];
@@ -31,7 +28,7 @@ export function ProfilePicture({
       const imageUrl = URL.createObjectURL(file);
       const image = new Image();
       image.src = imageUrl;
-      setPicture(imageUrl);
+      setProfilePicture(imageUrl);
 
       image.onload = function () {
         const width = image.width;
@@ -62,8 +59,8 @@ export function ProfilePicture({
         <div className={styles.buttonBox}>
           {isEditorActive ? (
             <ImageEditor
-              picture={picture}
-              setPicture={setPicture}
+              picture={profilePicture}
+              setPicture={setProfilePicture}
               setIsActive={setIsEditorActive}
             />
           ) : (
@@ -83,8 +80,12 @@ export function ProfilePicture({
                   orientation="vertical"
                   gap="8px"
                 >
-                  {picture ? (
-                    <img src={picture} alt="Avatar" className={styles.image} />
+                  {profilePicture ? (
+                    <img
+                      src={profilePicture}
+                      alt="Uploaded Profile Avatar"
+                      className={styles.image}
+                    />
                   ) : null}
                   <Stack
                     orientation="vertical"
@@ -94,15 +95,15 @@ export function ProfilePicture({
                   >
                     <UploadIcon
                       className={
-                        picture ? `${styles[`icon-white`]}` : styles.icon
+                        profilePicture ? `${styles[`icon-white`]}` : styles.icon
                       }
                     />
                     <Text
-                      color={picture ? "white" : "purple"}
+                      color={profilePicture ? "white" : "purple"}
                       type="heading"
                       size="s"
                     >
-                      {picture ? "Change Image" : "+ Upload Image"}
+                      {profilePicture ? "Change Image" : "+ Upload Image"}
                     </Text>
                   </Stack>
                 </Stack>
