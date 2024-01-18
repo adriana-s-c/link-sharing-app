@@ -10,7 +10,7 @@ import { useUserContext } from "../../../context";
 
 export function ProfileDetails() {
   const { userData, setUserData } = useUserContext();
-  const [picture, setPicture] = React.useState<
+  const [profilePicture, setProfilePicture] = React.useState<
     HTMLCanvasElement | string | undefined | any
   >(undefined);
   const [isEditorActive, setIsEditorActive] = React.useState<boolean>(false);
@@ -25,9 +25,20 @@ export function ProfileDetails() {
     setUserData((prevUserData) => ({
       ...prevUserData,
       ...data,
-      image: picture,
+      image: profilePicture,
     }));
   };
+
+  React.useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, [setUserData]);
+
+  React.useEffect(() => {
+    localStorage.setItem("userData", JSON.stringify(userData));
+  }, [userData]);
 
   return (
     <Stack orientation="vertical" className={styles.fullHeight}>
@@ -44,8 +55,8 @@ export function ProfileDetails() {
             </Stack>
             <Stack orientation="vertical" gap="12px">
               <ProfilePicture
-                picture={picture}
-                setPicture={setPicture}
+                profilePicture={profilePicture}
+                setProfilePicture={setProfilePicture}
                 isEditorActive={isEditorActive}
                 setIsEditorActive={setIsEditorActive}
               />
