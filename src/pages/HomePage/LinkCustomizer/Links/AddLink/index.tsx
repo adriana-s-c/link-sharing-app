@@ -79,7 +79,7 @@ export function AddLink({
         defaultValue={platform.link || ""}
         rules={{
           required: "Can’t be empty",
-          // validate: { validateLink },
+          validate: { validateLink },
         }}
         render={({ field }) => (
           <Input
