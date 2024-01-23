@@ -12,7 +12,7 @@ export function ProfileDetails() {
   const { userData, setUserData } = useUserContext();
   const [profilePicture, setProfilePicture] = React.useState<
     HTMLCanvasElement | string | undefined | any
-  >(undefined);
+  >((userData && userData.image) ?? undefined);
   const [isEditorActive, setIsEditorActive] = React.useState<boolean>(false);
 
   const {

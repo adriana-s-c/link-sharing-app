@@ -4,6 +4,7 @@ import { Stack } from "../../../../components/Stack";
 import { Text } from "../../../../components/Text";
 import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-image.svg";
 import { ImageEditor } from "./ImageEditor";
+import { useUserContext } from "../../../../context";
 
 type ProfilePictureProps = {
   profilePicture: string | undefined;
@@ -85,6 +86,7 @@ export function ProfilePicture({
                       src={profilePicture}
                       alt="Uploaded Profile Avatar"
                       className={styles.image}
+                      id="imageContainer"
                     />
                   ) : null}
                   <Stack

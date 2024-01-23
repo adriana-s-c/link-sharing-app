@@ -68,12 +68,17 @@ export function UserDataDisplay() {
         {userData?.image && (
           <img src={userData.image} alt="Avatar" className={styles.image} />
         )}
-        <Stack orientation="vertical" gap="7px">
+        <Stack
+          orientation="vertical"
+          gap="14px"
+          align="center"
+          className={styles.background}
+        >
           {renderNameText(userData)}
           {renderEmailText(userData?.email)}
         </Stack>
       </Stack>
-      <Stack orientation="vertical" gap="20px">
+      <Stack orientation="vertical" align="center" gap="20px">
         {renderMediaBoxes(userLinkData)}
       </Stack>
     </Stack>
