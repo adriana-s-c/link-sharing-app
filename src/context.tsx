@@ -55,7 +55,7 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const initialOptions: Option[] = [
     {
-      value: "Github",
+      value: "GitHub",
       placeholder: "e.g. https://www.github.com/johnappleseed",
       website: "github.com",
     },
@@ -70,7 +70,7 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
       website: "linkedin.com",
     },
     {
-      value: "Youtube",
+      value: "YouTube",
       placeholder: "e.g. https://www.youtube.com/@John_Appleseed",
       website: "youtube.com",
     },
@@ -85,7 +85,7 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
       website: "frontendmentor.io",
     },
     {
-      value: "Devto",
+      value: "Dev.to",
       placeholder: "e.g. https://dev.to/john-appleseed",
       website: "dev.to",
     },
@@ -100,7 +100,7 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
       website: "codewars.com",
     },
     {
-      value: "FreeCodeCamp",
+      value: "freeCodeCamp",
       placeholder: "e.g. https://www.freecodecamp.org/johnappleseed",
       website: "freecodecamp.org",
     },
@@ -110,7 +110,7 @@ export const OptionsProvider: React.FC<{ children: React.ReactNode }> = ({
       website: "hashnode.com/",
     },
     {
-      value: "StackOverflow",
+      value: "Stack Overflow",
       placeholder: "e.g. https://stackoverflow.com/users/johnappleseed",
       website: "stackoverflow.com",
     },

@@ -5,7 +5,7 @@ import { Text } from "../Text";
 import { Stack } from "../Stack";
 import { OptionItem } from "./OptionItem";
 import { Option } from "../../context";
-import { getIcon } from "../MediaBox";
+import { GetIcon } from "../MediaBox";
 
 type Props = {
   options: Option[];
@@ -54,11 +54,7 @@ export function Select({ options, selectedOption, setSelectedOption }: Props) {
         spacing="between"
       >
         <Stack gap="12px" align="center">
-          {getIcon(selectedOption.value)}
-          {selectedOption.icon &&
-            React.cloneElement(selectedOption.icon, {
-              className: styles.icon,
-            })}
+          {GetIcon({ name: selectedOption.value })}
           <Text type="body" size="m">
             {selectedOption.value}
           </Text>
@@ -70,7 +66,7 @@ export function Select({ options, selectedOption, setSelectedOption }: Props) {
           {options.map((option) => (
             <OptionItem
               key={option.value}
-              icon={getIcon(option.value)}
+              icon={GetIcon({ name: option.value, color: "white" })}
               value={option.value}
               isActive={isSelectedOption(option.value)}
               onClick={() => handleOptionClick(option)}

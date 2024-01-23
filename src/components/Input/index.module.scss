@@ -18,7 +18,7 @@
 
 .titleHorizontal {
   width: 100px;
-  text-wrap: nowrap;
+  white-space: nowrap;
   font-size: $fontsize-m;
   line-height: 24px;
   color: $grey-color;
@@ -28,45 +28,45 @@
   width: 100%;
   border: 1px solid $lightgrey-color;
   border-radius: 8px;
-  padding: 12px 16px 12px 16px;
+  padding: 12px 16px;
   font-size: $fontsize-m;
   background-repeat: no-repeat;
   background-size: 16px 16px;
   background-position: 16px 50%;
   transition: all 0.3s ease-in;
+
   &:focus {
-    transition: all 0.3s ease-in;
-    outline-color: $primary-color;
-    outline-style: solid;
-    outline-width: 1px;
+    outline: 1px solid $primary-color;
     box-shadow: 0px 0px 32px 0px #633cff40;
   }
+
   &-error {
     border: 1px solid $error-color;
+
     &:focus {
-      outline-color: none;
+      outline: none;
       box-shadow: none;
     }
   }
+
+  &-email,
+  &-password,
+  &-github,
+  &-link {
+    padding: 12px 16px 12px 44px;
+  }
+
   &-email {
     background-image: url(../../images/icon-email.svg);
-    padding: 12px 16px 12px 44px;
   }
-  &-password {
-    background-image: url(../../images/icon-password.svg);
-    padding: 12px 16px 12px 44px;
-  }
-  &-password {
-    background-image: url(../../images/icon-password.svg);
-    padding: 12px 16px 12px 44px;
-  }
+
+  &-password,
   &-github {
-    background-image: url(../../images/icon-github.svg);
-    padding: 12px 16px 12px 44px;
+    background-image: url(../../images/icon-password.svg);
   }
+
   &-link {
     background-image: url(../../images/icon-link.svg);
-    padding: 12px 16px 12px 44px;
   }
 }
 
@@ -74,6 +74,7 @@
   position: relative;
   width: 100%;
 }
+
 .errorMessage {
   position: absolute;
   right: 0;
