@@ -58,17 +58,24 @@ export function UserDataDisplay() {
   const { userData } = useUserContext();
 
   return (
-    <Stack orientation="vertical">
-      <Stack spacing="center">
+    <Stack orientation="vertical" className={styles.box} gap="14px">
+      <Stack
+        orientation="vertical"
+        className={styles.container}
+        gap="14px"
+        align="center"
+      >
         {userData?.image && (
           <img src={userData.image} alt="Avatar" className={styles.image} />
         )}
+        <Stack orientation="vertical" gap="7px">
+          {renderNameText(userData)}
+          {renderEmailText(userData?.email)}
+        </Stack>
       </Stack>
-      <Stack orientation="vertical" gap="16px">
-        {renderNameText(userData)}
-        {renderEmailText(userData?.email)}
+      <Stack orientation="vertical" gap="20px">
+        {renderMediaBoxes(userLinkData)}
       </Stack>
-      {renderMediaBoxes(userLinkData)}
     </Stack>
   );
 }

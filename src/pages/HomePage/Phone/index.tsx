@@ -1,14 +1,15 @@
 import styles from "./index.module.scss";
 import { ReactComponent as ImagePhone } from "../../../images/illustration-phone-mockup.svg";
-import { UserDataDisplay } from "../../../components/UserDataDisplay/UserDataDisplay";
+import { UserDataDisplay } from "../../../components/UserDataDisplay";
+import { Stack } from "../../../components/Stack";
 
 export const Phone = () => {
   return (
-    <div className={styles.box}>
-      <div className={styles.position}>
-        <ImagePhone className={styles.phone} />
+    <Stack className={styles.box}>
+      <ImagePhone className={styles.phone} />
+      <div className={styles.margin}>
         <UserDataDisplay />
       </div>
-    </div>
+    </Stack>
   );
 };

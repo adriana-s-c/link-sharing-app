@@ -63,7 +63,7 @@ export function AddLink({
           </Text>
         </button>
       </Stack>
-      <Stack orientation="vertical">
+      <Stack orientation="vertical" gap="8px">
         <Text type="body" size="s">
           Platform
         </Text>

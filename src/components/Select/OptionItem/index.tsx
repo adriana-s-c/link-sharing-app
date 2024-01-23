@@ -3,7 +3,7 @@ import * as React from "react";
 import { Stack } from "../../Stack/";
 
 type OptionItemProps = {
-  icon: JSX.Element;
+  icon: any;
   value: string;
   isActive: boolean;
   onClick: () => void;

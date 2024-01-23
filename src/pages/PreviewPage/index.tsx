@@ -1,6 +1,6 @@
 import styles from "./index.module.scss";
 import { Stack } from "../../components/Stack";
-import { UserDataDisplay } from "../../components/UserDataDisplay/UserDataDisplay";
+import { UserDataDisplay } from "../../components/UserDataDisplay";
 import { PreviewNavigation } from "./PreviewNavigation";
 import { UserProvider, UserLinkDataProvider } from "../../context";
 
