@@ -32,10 +32,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     <Stack
       orientation={orientation === "vertical" ? "vertical" : "horizontal"}
       className={styles.fullWidth}
-      gap="16px"
-      align="center"
+      gap="8px"
     >
-      <Stack spacing="between" className={styles.width}>
+      <Stack className={styles.width}>
         <label
           className={
             orientation === "vertical"

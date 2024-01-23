@@ -9,7 +9,7 @@ export function HomePage() {
   return (
     <Stack orientation="vertical" className={styles.box} gap="24px">
       <NavBar />
-      <Stack orientation="horizontal" gap="24px">
+      <Stack orientation="horizontal" gap="24px" className={styles.width}>
         <UserProvider>
           <Phone />
           <div className={styles.container}>

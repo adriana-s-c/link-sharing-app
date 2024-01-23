@@ -32,6 +32,7 @@ export function LinkCustomizer() {
 
   const onSubmit = () => {
     setUserLinkData(selectedPlatforms);
+    localStorage.setItem("links", JSON.stringify(selectedPlatforms));
   };
 
   const handleAddPlatform = () => {

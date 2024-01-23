@@ -17,7 +17,7 @@ import { ReactComponent as Hashnode } from "../../images/icon-hashnode.svg";
 import { ReactComponent as StackOverflow } from "../../images/icon-stack-overflow.svg";
 import { ReactComponent as Twitch } from "../../images/icon-twitch.svg";
 
-function getIcon(name: string) {
+export function getIcon(name: string) {
   switch (name) {
     case "Github":
       return <Github className={styles.icon} />;
