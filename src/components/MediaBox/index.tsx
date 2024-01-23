@@ -17,34 +17,55 @@ import { ReactComponent as Hashnode } from "../../images/icon-hashnode.svg";
 import { ReactComponent as StackOverflow } from "../../images/icon-stack-overflow.svg";
 import { ReactComponent as Twitch } from "../../images/icon-twitch.svg";
 
-export function getIcon(name: string) {
+type GetIconProps = {
+  name: string;
+  color?: "white" | "grey";
+};
+
+export function GetIcon({ name, color = "grey" }: GetIconProps) {
   switch (name) {
-    case "Github":
-      return <Github className={styles.icon} />;
-    case "Youtube":
-      return <Youtube className={styles.icon} />;
+    case "GitHub":
+      return <Github className={clsx(styles.icon, styles[`icon-${color}`])} />;
+    case "YouTube":
+      return <Youtube className={clsx(styles.icon, styles[`icon-${color}`])} />;
     case "LinkedIn":
-      return <LinkedIn className={styles.icon} />;
+      return (
+        <LinkedIn className={clsx(styles.icon, styles[`icon-${color}`])} />
+      );
     case "Facebook":
-      return <Facebook className={styles.icon} />;
+      return (
+        <Facebook className={clsx(styles.icon, styles[`icon-${color}`])} />
+      );
     case "GitLab":
-      return <Gitlab className={styles.icon} />;
+      return <Gitlab className={clsx(styles.icon, styles[`icon-${color}`])} />;
     case "Frontend Mentor":
-      return <FrontendMentor className={styles.icon} />;
+      return (
+        <FrontendMentor
+          className={clsx(styles.icon, styles[`icon-${color}`])}
+        />
+      );
     case "Twitter":
-      return <Twitter className={styles.icon} />;
+      return <Twitter className={clsx(styles.icon, styles[`icon-${color}`])} />;
     case "Twitch":
-      return <Twitch className={styles.icon} />;
-    case "Devto":
-      return <Devto className={styles.icon} />;
+      return <Twitch className={clsx(styles.icon, styles[`icon-${color}`])} />;
+    case "Dev.to":
+      return <Devto className={clsx(styles.icon, styles[`icon-${color}`])} />;
     case "Codewars":
-      return <Codewars className={styles.icon} />;
-    case "FreeCodeCamp":
-      return <FreeCodeCamp className={styles.icon} />;
+      return (
+        <Codewars className={clsx(styles.icon, styles[`icon-${color}`])} />
+      );
+    case "freeCodeCamp":
+      return (
+        <FreeCodeCamp className={clsx(styles.icon, styles[`icon-${color}`])} />
+      );
     case "Hashnode":
-      return <Hashnode className={styles.icon} />;
-    case "StackOverflow":
-      return <StackOverflow className={styles.icon} />;
+      return (
+        <Hashnode className={clsx(styles.icon, styles[`icon-${color}`])} />
+      );
+    case "Stack Overflow":
+      return (
+        <StackOverflow className={clsx(styles.icon, styles[`icon-${color}`])} />
+      );
   }
 }
 
@@ -54,14 +75,20 @@ type Props = {
 };
 
 export function MediaBox({ name, className }: Props) {
+  const platformName = name.replace(/[ .]/g, "").toLowerCase();
+
   return (
     <Stack
-      className={clsx(styles.box, name && styles[`box-${name}`], className)}
+      className={clsx(
+        styles.box,
+        name && styles[`box-${platformName}`],
+        className
+      )}
       align="center"
       spacing="between"
     >
       <Stack gap="8px" align="center">
-        {getIcon(name)}
+        {GetIcon({ name, color: "white" })}
         <Text
           type="body"
           size="m"
@@ -70,7 +97,7 @@ export function MediaBox({ name, className }: Props) {
           {name}
         </Text>
       </Stack>
-      <Arrow />
+      <Arrow className={styles.arrow} />
     </Stack>
   );
 }

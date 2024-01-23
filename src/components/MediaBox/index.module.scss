@@ -3,43 +3,44 @@
 .box {
   padding: 16px;
   border-radius: 8px;
-  &-Github {
+  &-github {
     background-color: $github-color;
   }
-  &-Youtube {
+  &-youtube {
     background-color: $youtube-color;
   }
-  &-LinkedIn {
+  &-linkedin {
     background-color: $linkedin-color;
   }
-  &-Facebook {
+  &-facebook {
     background-color: $facebook-color;
   }
-  &-FrontendMentor {
+  &-frontendmentor {
+    background-color: $white-color;
     border: 1px solid $lightgrey-color;
   }
-  &-Twitter {
+  &-twitter {
     background-color: $twitter-color;
   }
-  &-Twitch {
+  &-twitch {
     background-color: $twitch-color;
   }
-  &-Devto {
+  &-devto {
     background-color: $devto-color;
   }
-  &-Codewars {
+  &-codewars {
     background-color: $codewars-color;
   }
-  &-freeCodeCamp {
+  &-freecodecamp {
     background-color: $freecodecamp-color;
   }
-  &-Gitlab {
+  &-gitlab {
     background-color: $gitlab-color;
   }
-  &-Hashnode {
+  &-hashnode {
     background-color: $hashnode-color;
   }
-  &-StackOverflow {
+  &-stackoverflow {
     background-color: $stackoverflow-color;
   }
 }
@@ -47,5 +48,14 @@
 .icon {
   width: 16px;
   height: 16px;
-  fill: $grey-color;
+  &-grey {
+    fill: $grey-color;
+  }
+  &-white {
+    fill: $white-color;
+  }
+}
+
+.arrow {
+  fill: $white-color;
 }
