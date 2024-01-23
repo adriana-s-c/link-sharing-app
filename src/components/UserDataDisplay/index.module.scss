@@ -1,6 +1,7 @@
 @import "../../variables.scss";
 
 .box {
+  width: 285px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -18,11 +19,14 @@
   border: 4px solid $primary-color;
 }
 
+.background {
+  background-color: $white-color;
+}
+
 .name,
 .email {
   width: fit-content;
   min-width: 160px;
-  background-color: $white-color;
   &.name {
     top: 180px;
   }
