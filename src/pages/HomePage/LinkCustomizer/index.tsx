@@ -1,13 +1,12 @@
 import styles from "./index.module.scss";
 import * as React from "react";
 import { Stack } from "../../../components/Stack";
-import { Text } from "../../../components/Text";
-import { Button } from "../../../components/Button";
 import { SaveDivider } from "../SaveComponent";
 import { GetStarted } from "./GetStarted";
 import { Option, useUserLinkData, useOptions } from "../../../context";
 import { Links } from "./Links";
 import { useForm } from "react-hook-form";
+import { Header } from "../Header";
 
 type UpdateFilteredOptionsProps = {
   options: Option[];
@@ -45,6 +44,13 @@ export function LinkCustomizer() {
     localStorage.setItem("links", JSON.stringify(selectedPlatforms));
   };
 
+  const handleFormSubmit = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onSubmit();
+    }
+  };
+
   const handleAddPlatform = () => {
     if (filteredOptions.length > 0) {
       setSelectedPlatforms((prevSelectedPlatforms) => [
@@ -56,32 +62,15 @@ export function LinkCustomizer() {
 
   return (
     <Stack orientation="vertical" className={styles.fullheight}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleFormSubmit}>
         <Stack orientation="vertical" className={styles.box}>
-          <Stack
-            orientation="vertical"
-            gap="40px"
-            className={styles.fullheight}
-          >
-            <Stack orientation="vertical" gap="16px">
-              <Text type="heading" size="m">
-                Customize your links
-              </Text>
-              <Text type="body" size="m" color="grey">
-                Add/edit/remove links below and then share all your profiles
-                with the world!
-              </Text>
-            </Stack>
+          <div>
             <Stack
               orientation="vertical"
-              gap="24px"
+              gap="40px"
               className={styles.fullheight}
             >
-              <div>
-                <Button colorScheme="secondary" onClick={handleAddPlatform}>
-                  + Add new link
-                </Button>
-              </div>
+              <Header onClick={handleAddPlatform} />
               {selectedPlatforms.length === 0 ? (
                 <GetStarted />
               ) : (
@@ -95,7 +84,7 @@ export function LinkCustomizer() {
                 />
               )}
             </Stack>
-          </Stack>
+          </div>
         </Stack>
         <SaveDivider />
       </form>
