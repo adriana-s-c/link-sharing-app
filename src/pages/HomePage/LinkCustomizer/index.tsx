@@ -9,6 +9,20 @@ import { Option, useUserLinkData, useOptions } from "../../../context";
 import { Links } from "./Links";
 import { useForm } from "react-hook-form";
 
+type UpdateFilteredOptionsProps = {
+  options: Option[];
+  selectedPlatforms: Option[];
+};
+
+function updateFilteredOptions({
+  options,
+  selectedPlatforms,
+}: UpdateFilteredOptionsProps): Option[] {
+  return options.filter(
+    (option) => !selectedPlatforms.some((opt) => opt.value === option.value)
+  );
+}
+
 export function LinkCustomizer() {
   const {
     handleSubmit,
@@ -16,19 +30,15 @@ export function LinkCustomizer() {
     formState: { errors },
   } = useForm();
   const { options } = useOptions();
-  const { setUserLinkData } = useUserLinkData();
+  const { userLinkData, setUserLinkData } = useUserLinkData();
   const [filteredOptions, setFilteredOptions] = React.useState(options);
-  const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>([
-    options[0],
-  ]);
+  const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>(
+    userLinkData && userLinkData.length > 0 ? userLinkData : [options[0]]
+  );
 
   React.useEffect(() => {
-    const updateOptions = options.filter(
-      (option) =>
-        !selectedPlatforms.some((opt: any) => opt.value === option.value)
-    );
-    setFilteredOptions(updateOptions);
-  }, [options, selectedPlatforms, setFilteredOptions]);
+    setFilteredOptions(updateFilteredOptions({ options, selectedPlatforms }));
+  }, [options, selectedPlatforms]);
 
   const onSubmit = () => {
     setUserLinkData(selectedPlatforms);

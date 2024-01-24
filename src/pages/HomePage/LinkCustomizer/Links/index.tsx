@@ -2,7 +2,7 @@ import styles from "./index.module.scss";
 import * as React from "react";
 import { Stack } from "../../../../components/Stack";
 import { AddLink } from "./AddLink";
-import { Option } from "../../../../context";
+import { Option, useUserLinkData } from "../../../../context";
 
 interface Props {
   selectedPlatforms: any;
@@ -20,6 +20,8 @@ export function Links({
   errors,
   control,
 }: Props) {
+  const { userLinkData } = useUserLinkData();
+
   const handleOptionChange = (index: number, option: Option) => {
     const newSelectedOptions = [...selectedPlatforms];
     newSelectedOptions[index] = option;
@@ -32,6 +34,8 @@ export function Links({
     );
     setSelectedPlatforms(newSelectedPlatforms);
   };
+
+  console.log(userLinkData);
 
   return (
     <Stack orientation="vertical" className={styles.box} gap="24px">
