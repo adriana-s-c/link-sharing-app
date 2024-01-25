@@ -74,7 +74,7 @@ export function AddLink({
         />
       </Stack>
       <Controller
-        name={`link${index}`}
+        name={`link-${platform.value}`}
         control={control}
         defaultValue={platform.link || ""}
         rules={{
@@ -84,7 +84,7 @@ export function AddLink({
         render={({ field }) => (
           <Input
             title="Link"
-            id={`link${index}`}
+            id={`link-${platform.value}`}
             icon="link"
             placeholder={platform.placeholder}
             value={field.value}
