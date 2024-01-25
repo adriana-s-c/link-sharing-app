@@ -35,13 +35,11 @@ export function Links({
     setSelectedPlatforms(newSelectedPlatforms);
   };
 
-  console.log(userLinkData);
-
   return (
     <Stack orientation="vertical" className={styles.box} gap="24px">
       {selectedPlatforms.map((platform: any, index: any) => (
         <AddLink
-          key={index}
+          key={platform.value}
           index={index}
           platform={platform}
           filteredOptions={filteredOptions}
