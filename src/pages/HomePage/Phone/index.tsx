@@ -8,7 +8,7 @@ export const Phone = () => {
     <Stack className={styles.box}>
       <ImagePhone className={styles.phone} />
       <div className={styles.margin}>
-        <UserDataDisplay />
+        <UserDataDisplay variant="phone" />
       </div>
     </Stack>
   );

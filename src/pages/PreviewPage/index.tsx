@@ -23,9 +23,9 @@ export function PreviewPage() {
             className={styles.width}
           >
             <PreviewNavigation />
-            <Stack spacing="center" className={styles.container}>
-              <UserDataDisplay />
-            </Stack>
+            <div className={styles.container}>
+              <UserDataDisplay variant="preview" />
+            </div>
           </Stack>
         </Stack>
       </UserLinkDataProvider>
