@@ -53,12 +53,18 @@ const renderMediaBoxes = (userLinkData?: { value: string }[]) => {
   );
 };
 
-export function UserDataDisplay() {
+type UserDataDisplayProps = {
+  variant?: "phone" | "preview";
+};
+
+export function UserDataDisplay({ variant = "preview" }: UserDataDisplayProps) {
   const { userLinkData } = useUserLinkData();
   const { userData } = useUserContext();
 
+  const boxClass = variant === "preview" ? styles.boxPreview : styles.boxPhone;
+
   return (
-    <Stack orientation="vertical" className={styles.box} gap="14px">
+    <Stack orientation="vertical" className={boxClass} gap="14px">
       <Stack
         orientation="vertical"
         className={styles.container}
