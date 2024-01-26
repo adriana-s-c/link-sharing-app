@@ -1,8 +1,9 @@
 @import "../../../variables.scss";
 
 .box {
-  width: 90%;
+  box-sizing: border-box;
+  width: 100%;
   background-color: $white-color;
-  padding: 16px 16px 16px 24px;
+  padding: 16px 24px;
   border-radius: $border-radius-m;
 }
