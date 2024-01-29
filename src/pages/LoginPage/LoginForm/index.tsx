@@ -1,11 +1,13 @@
-import styles from "./index.module.scss";
 import { Input } from "../../../components/Input";
 import { Stack } from "../../../components/Stack";
 import { Text } from "../../../components/Text";
 import { Button } from "../../../components/Button";
 import { Link } from "react-router-dom";
+import useDeviceType from "../../../components/useDeviceType";
 
 export function LoginForm() {
+  const { isMobile } = useDeviceType();
+
   return (
     <Stack orientation="vertical" gap="24px">
       <Stack orientation="vertical" gap="15px">
@@ -31,7 +33,12 @@ export function LoginForm() {
         icon="password"
       />
       <Button colorScheme="primary">Login</Button>
-      <Stack orientation="horizontal" gap="4px" spacing="center">
+      <Stack
+        orientation={isMobile ? "vertical" : "horizontal"}
+        gap="4px"
+        spacing="center"
+        align="center"
+      >
         <Text type="body" size="m" color="grey">
           Don’t have an account?
         </Text>

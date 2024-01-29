@@ -8,12 +8,24 @@
   transform: translate(-50%, -50%);
 }
 
+.containerMobile {
+  background-color: $white-color;
+  height: 100vh;
+  width: 100vw;
+  padding: 32px;
+}
+
 .box {
   background-color: $white-color;
   padding: 40px;
   width: 396px;
   border-radius: $border-radius-m;
   height: 100%;
+}
+
+.boxMobile {
+  height: 100%;
+  width: 100%;
 }
 
 .logo {
