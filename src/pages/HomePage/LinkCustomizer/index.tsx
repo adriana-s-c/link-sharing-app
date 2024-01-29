@@ -60,6 +60,8 @@ export function LinkCustomizer() {
     }
   };
 
+  const isStickyBottom = selectedPlatforms.length > 1;
+
   return (
     <Stack orientation="vertical" className={styles.fullheight}>
       <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleFormSubmit}>
@@ -86,7 +88,7 @@ export function LinkCustomizer() {
             </Stack>
           </div>
         </Stack>
-        <SaveDivider />
+        <SaveDivider position={isStickyBottom ? "sticky" : "absolute"} />
       </form>
     </Stack>
   );

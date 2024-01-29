@@ -1,20 +1,17 @@
 @import "../../../variables.scss";
 
 .container {
-  position: absolute;
   bottom: 0;
   width: 100%;
   height: 94px;
-}
-
-.containerTablet {
-  background-color: $white-color;
-  border-radius: 0 0 $border-radius-m $border-radius-m;
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  height: 94px;
-  z-index: 10;
+  &-absolute {
+    position: absolute;
+  }
+  &-sticky {
+    background-color: $white-color;
+    border-radius: 0 0 $border-radius-m $border-radius-m;
+    position: sticky;
+  }
 }
 
 .divider {
