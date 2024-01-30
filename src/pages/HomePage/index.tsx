@@ -5,6 +5,7 @@ import { Phone } from "./Phone";
 import { Outlet } from "react-router-dom";
 import { OptionsProvider, UserProvider } from "../../context";
 import useDeviceType from "../../components/useDeviceType";
+import clsx from "clsx";
 
 export function HomePage() {
   const { isTablet, isMobile } = useDeviceType();
@@ -23,7 +24,13 @@ export function HomePage() {
       >
         <UserProvider>
           {isTablet || isMobile ? null : <Phone />}
-          <div className={styles.container}>
+          <div
+            className={
+              isMobile
+                ? clsx(styles.container, styles.containerMobile)
+                : styles.container
+            }
+          >
             <OptionsProvider>
               <Outlet />
             </OptionsProvider>
