@@ -12,6 +12,9 @@
     border-radius: 0 0 $border-radius-m $border-radius-m;
     position: sticky;
   }
+  &-relative {
+    position: relative;
+  }
 }
 
 .divider {

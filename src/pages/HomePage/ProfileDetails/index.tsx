@@ -7,6 +7,7 @@ import { SaveDivider } from "../SaveComponent";
 import { ProfileDetailsForm } from "./ProfileDetailsForm";
 import { ProfilePicture } from "./ProfilePicture";
 import { useUserContext } from "../../../context";
+import useDeviceType from "../../../components/useDeviceType";
 
 export function ProfileDetails() {
   const { userData, setUserData } = useUserContext();
@@ -14,6 +15,7 @@ export function ProfileDetails() {
     HTMLCanvasElement | string | undefined | any
   >((userData && userData.image) ?? undefined);
   const [isEditorActive, setIsEditorActive] = React.useState<boolean>(false);
+  const { isMobile } = useDeviceType();
 
   const {
     handleSubmit,
@@ -43,7 +45,10 @@ export function ProfileDetails() {
   return (
     <Stack orientation="vertical" className={styles.fullHeight}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack orientation="vertical" className={styles.box}>
+        <Stack
+          orientation="vertical"
+          className={isMobile ? styles.boxMobile : styles.box}
+        >
           <Stack orientation="vertical" gap="40px">
             <Stack orientation="vertical" gap="16px">
               <Text type="heading" size="m">
@@ -64,7 +69,7 @@ export function ProfileDetails() {
             </Stack>
           </Stack>
         </Stack>
-        <SaveDivider disabled={isEditorActive} />
+        <SaveDivider disabled={isEditorActive} position="relative" />
       </form>
     </Stack>
   );
