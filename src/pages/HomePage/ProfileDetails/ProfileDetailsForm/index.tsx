@@ -3,6 +3,7 @@ import * as React from "react";
 import { Stack } from "../../../../components/Stack";
 import { Input } from "../../../../components/Input";
 import { Controller } from "react-hook-form";
+import useDeviceType from "../../../../components/useDeviceType";
 
 type Props = {
   errors: any;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export function ProfileDetailsForm({ control, errors }: Props) {
+  const { isMobile } = useDeviceType();
+
   return (
     <Stack orientation="vertical" className={styles.box} spacing="between">
       <Stack orientation="vertical" align="center" gap="16px">
@@ -25,7 +28,7 @@ export function ProfileDetailsForm({ control, errors }: Props) {
               placeholder="e.g. John"
               id="firstName"
               title="First name*"
-              orientation="horizontal"
+              orientation={isMobile ? "vertical" : "horizontal"}
               errors={errors}
               {...field}
             />
@@ -43,7 +46,7 @@ export function ProfileDetailsForm({ control, errors }: Props) {
               placeholder="e.g. Appleseed"
               id="lastName"
               title="Last name*"
-              orientation="horizontal"
+              orientation={isMobile ? "vertical" : "horizontal"}
               errors={errors}
               {...field}
             />
@@ -65,7 +68,7 @@ export function ProfileDetailsForm({ control, errors }: Props) {
               placeholder="e.g. email@example.com"
               id="email"
               title="Email"
-              orientation="horizontal"
+              orientation={isMobile ? "vertical" : "horizontal"}
               errors={errors}
               {...field}
             />

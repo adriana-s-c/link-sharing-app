@@ -6,7 +6,7 @@ import useDeviceType from "../../../components/useDeviceType";
 
 type Props = {
   disabled?: boolean;
-  position?: "absolute" | "sticky";
+  position?: "absolute" | "sticky" | "relative";
 };
 
 export function SaveDivider({

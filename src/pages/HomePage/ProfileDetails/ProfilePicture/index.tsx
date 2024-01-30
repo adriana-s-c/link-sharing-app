@@ -5,6 +5,7 @@ import { Text } from "../../../../components/Text";
 import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-image.svg";
 import { ImageEditor } from "./ImageEditor";
 import { useUserContext } from "../../../../context";
+import useDeviceType from "../../../../components/useDeviceType";
 
 type ProfilePictureProps = {
   profilePicture: string | undefined;
@@ -21,6 +22,8 @@ export function ProfilePicture({
   isEditorActive,
   setIsEditorActive,
 }: ProfilePictureProps) {
+  const { isMobile } = useDeviceType();
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsEditorActive(true);
     const file = e.target.files?.[0];
@@ -48,15 +51,19 @@ export function ProfilePicture({
 
   return (
     <Stack
-      orientation="horizontal"
-      align="center"
+      orientation={isMobile ? "vertical" : "horizontal"}
+      align={isMobile ? "start" : "center"}
       className={styles.box}
       gap="16px"
     >
       <Text type="body" size="m" color="grey" className={styles.width}>
         Profile picture
       </Text>
-      <Stack gap="24px" align="center">
+      <Stack
+        gap="24px"
+        align={isMobile ? "start" : "center"}
+        orientation={isMobile ? "vertical" : "horizontal"}
+      >
         <div className={styles.buttonBox}>
           {isEditorActive ? (
             <ImageEditor
