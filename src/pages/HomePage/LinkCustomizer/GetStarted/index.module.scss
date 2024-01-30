@@ -5,6 +5,19 @@
   background-color: $background-color;
   padding: 40px;
   text-align: center;
+  &-mobile {
+    padding: 40px 20px;
+  }
+}
+
+.icon {
+  width: 250px;
+  height: 160px;
+}
+
+.iconMobile {
+  width: 124.77px;
+  height: 80px;
 }
 
 .textcontainer {

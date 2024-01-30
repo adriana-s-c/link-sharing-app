@@ -1,14 +1,19 @@
 import styles from "./index.module.scss";
 import { Stack } from "../../../components/Stack";
-import logo from "../../../images/logo-devlinks-large.svg";
+import logoBig from "../../../images/logo-devlinks-large.svg";
+import logoSmall from "../../../images/logo-devlinks-small.svg";
+import previewIcon from "../../../images/icon-preview-header.svg";
 import { Button } from "../../../components/Button";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import useDeviceType from "../../../components/useDeviceType";
 
 export function NavBar() {
   const location = useLocation();
-
+  const { isMobile } = useDeviceType();
   const isProfileActive = location.pathname === "/home/profile";
+
+  const logo = isMobile ? logoSmall : logoBig;
 
   return (
     <Stack orientation="horizontal" spacing="between" className={styles.box}>
@@ -19,7 +24,7 @@ export function NavBar() {
             icon="link"
             colorScheme={isProfileActive ? "third" : "active"}
           >
-            Links
+            {isMobile ? null : "Links"}
           </Button>
         </Link>
         <Link to="/home/profile">
@@ -27,13 +32,15 @@ export function NavBar() {
             icon="profile"
             colorScheme={isProfileActive ? "active" : "third"}
           >
-            Profile Details
+            {isMobile ? null : "Profile Details"}
           </Button>
         </Link>
       </Stack>
       <Stack>
         <Link to="/preview">
-          <Button colorScheme="secondary">Preview</Button>
+          <Button icon="preview" colorScheme="secondary">
+            {isMobile ? null : "Preview"}
+          </Button>
         </Link>
       </Stack>
     </Stack>

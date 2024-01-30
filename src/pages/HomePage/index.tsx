@@ -7,14 +7,22 @@ import { OptionsProvider, UserProvider } from "../../context";
 import useDeviceType from "../../components/useDeviceType";
 
 export function HomePage() {
-  const { isTablet } = useDeviceType();
+  const { isTablet, isMobile } = useDeviceType();
 
   return (
-    <Stack orientation="vertical" className={styles.box} gap="24px">
+    <Stack
+      orientation="vertical"
+      className={isMobile ? styles.boxMobile : styles.box}
+      gap="24px"
+    >
       <NavBar />
-      <Stack orientation="horizontal" gap="24px" className={styles.width}>
+      <Stack
+        orientation="horizontal"
+        gap="24px"
+        className={isMobile ? styles.widthMobile : styles.width}
+      >
         <UserProvider>
-          {isTablet ? null : <Phone />}
+          {isTablet || isMobile ? null : <Phone />}
           <div className={styles.container}>
             <OptionsProvider>
               <Outlet />

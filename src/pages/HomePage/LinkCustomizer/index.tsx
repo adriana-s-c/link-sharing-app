@@ -7,6 +7,8 @@ import { Option, useUserLinkData, useOptions } from "../../../context";
 import { Links } from "./Links";
 import { useForm } from "react-hook-form";
 import { Header } from "../Header";
+import useDeviceType from "../../../components/useDeviceType";
+import clsx from "clsx";
 
 type UpdateFilteredOptionsProps = {
   options: Option[];
@@ -34,6 +36,7 @@ export function LinkCustomizer() {
   const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>(
     userLinkData && userLinkData.length > 0 ? userLinkData : [options[0]]
   );
+  const { isMobile } = useDeviceType();
 
   React.useEffect(() => {
     setFilteredOptions(updateFilteredOptions({ options, selectedPlatforms }));
@@ -65,7 +68,12 @@ export function LinkCustomizer() {
   return (
     <Stack orientation="vertical" className={styles.fullheight}>
       <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleFormSubmit}>
-        <Stack orientation="vertical" className={styles.box}>
+        <Stack
+          orientation="vertical"
+          className={
+            isMobile ? clsx(styles.box, styles["box-mobile"]) : styles.box
+          }
+        >
           <div>
             <Stack
               orientation="vertical"

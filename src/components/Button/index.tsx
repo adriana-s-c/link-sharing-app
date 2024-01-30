@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { Stack } from "../Stack";
 import { ReactComponent as LinkIcon } from "../../images/icon-link.svg";
 import { ReactComponent as ProfileIcon } from "../../images/icon-profile-details-header.svg";
+import { ReactComponent as PreviewIcon } from "../../images/icon-preview-header.svg";
 
 type Props = ComponentPropsWithoutRef<"button"> & {
   colorScheme: "primary" | "secondary" | "third" | "active";
@@ -18,6 +19,8 @@ function getIcon(name: string) {
       return <LinkIcon className={styles.icon} />;
     case "profile":
       return <ProfileIcon className={styles.icon} />;
+    case "preview":
+      return <PreviewIcon className={styles.icon} />;
   }
 }
 
