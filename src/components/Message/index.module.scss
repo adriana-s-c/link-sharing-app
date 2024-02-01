@@ -12,13 +12,35 @@
 }
 
 .box {
+  box-sizing: border-box;
+  width: 100%;
   background-color: $black-color;
   padding: 16px 24px;
   border-radius: $border-radius-m;
   animation: fadeInOut 3s ease-in forwards;
   &.mobile {
-    margin: 3%;
     padding: 8px 40px;
     text-align: center;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+@mixin messageboxStyle {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.messagebox {
+  width: fit-content;
+  @include messageboxStyle();
+  &.mobile {
+    width: 90%;
   }
 }

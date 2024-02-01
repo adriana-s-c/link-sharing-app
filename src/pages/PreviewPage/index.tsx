@@ -42,13 +42,13 @@ export function PreviewPage() {
               <UserDataDisplay variant="preview" />
             </div>
           </Stack>
-          {showMessage && (
-            <Message
-              text="The link has been copied to your clipboard!"
-              type="preview"
-            />
-          )}
         </Stack>
+        {showMessage && (
+          <Message
+            text="The link has been copied to your clipboard!"
+            type="preview"
+          />
+        )}
       </UserLinkDataProvider>
     </UserProvider>
   );
