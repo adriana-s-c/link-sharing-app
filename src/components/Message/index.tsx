@@ -15,15 +15,21 @@ export function Message({ text, type }: Props) {
   const { isMobile } = useDeviceType();
 
   return (
-    <Stack
-      className={clsx(styles.box, { [styles.mobile]: isMobile })}
-      gap="8px"
-      align={isMobile ? "center" : "start"}
-    >
-      {type === "profile" ? <SavedIcon /> : <LinkIcon />}
-      <Text color="white" type="heading" size="s">
-        {text}
-      </Text>
-    </Stack>
+    <div className={clsx(styles.messagebox, { [styles.mobile]: isMobile })}>
+      <Stack
+        className={clsx(styles.box, { [styles.mobile]: isMobile })}
+        gap="8px"
+        align={isMobile ? "center" : "start"}
+      >
+        {type === "profile" ? (
+          <SavedIcon className={styles.icon} />
+        ) : (
+          <LinkIcon />
+        )}
+        <Text color="white" type="heading" size="s">
+          {text}
+        </Text>
+      </Stack>
+    </div>
   );
 }
