@@ -1,13 +1,16 @@
 import styles from "./index.module.scss";
 import * as React from "react";
+import clsx from "clsx";
 import { Stack } from "../../components/Stack";
 import { UserDataDisplay } from "../../components/UserDataDisplay";
 import { PreviewNavigation } from "./PreviewNavigation";
 import { UserProvider, UserLinkDataProvider } from "../../context";
 import { CopyLinkMessage } from "./CopyLinkMessage";
+import useDeviceType from "../../components/useDeviceType";
 
 export function PreviewPage() {
   const [showMessage, setShowMessage] = React.useState<boolean>(false);
+  const { isMobile } = useDeviceType();
 
   const handleClick = () => {
     setShowMessage(true);
@@ -20,20 +23,22 @@ export function PreviewPage() {
         <Stack
           orientation="vertical"
           align="center"
-          spacing="center"
-          className={styles.box}
-          gap="45px"
+          spacing={isMobile ? "flexStart" : "center"}
+          className={clsx(styles.box, { [styles.mobile]: isMobile })}
+          gap={isMobile ? "0px" : "45px"}
         >
-          <div className={styles.background} />
+          <div className={isMobile ? null : styles.background} />
           <Stack
             orientation="vertical"
-            gap="106px"
+            gap={isMobile ? "60px" : "106px"}
             align="center"
             spacing="center"
             className={styles.width}
           >
             <PreviewNavigation onClick={handleClick} />
-            <div className={styles.container}>
+            <div
+              className={isMobile ? styles.containerMobile : styles.container}
+            >
               <UserDataDisplay variant="preview" />
             </div>
           </Stack>

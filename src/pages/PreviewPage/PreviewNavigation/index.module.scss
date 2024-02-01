@@ -1,9 +1,21 @@
 @import "../../../variables.scss";
 
-.box {
+@mixin boxStyle {
   box-sizing: border-box;
   width: 100%;
-  background-color: $white-color;
   padding: 16px 24px;
+}
+
+.box {
+  @include boxStyle();
+  background-color: $white-color;
   border-radius: $border-radius-m;
+}
+
+.boxMobile {
+  @include boxStyle();
+}
+
+.buttonwidth {
+  width: 50%;
 }
