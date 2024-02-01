@@ -13,8 +13,12 @@
 
 .box {
   background-color: $black-color;
-  width: fit-content;
   padding: 16px 24px;
   border-radius: $border-radius-m;
   animation: fadeInOut 4s ease-in forwards;
+  &.mobile {
+    margin: 3%;
+    padding: 8px 40px;
+    text-align: center;
+  }
 }

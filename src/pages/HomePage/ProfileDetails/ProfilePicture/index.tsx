@@ -4,7 +4,6 @@ import { Stack } from "../../../../components/Stack";
 import { Text } from "../../../../components/Text";
 import { ReactComponent as UploadIcon } from "../../../../images/icon-upload-image.svg";
 import { ImageEditor } from "./ImageEditor";
-import { useUserContext } from "../../../../context";
 import useDeviceType from "../../../../components/useDeviceType";
 
 type ProfilePictureProps = {
