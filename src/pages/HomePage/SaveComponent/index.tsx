@@ -9,7 +9,7 @@ type Props = {
   position?: "absolute" | "sticky" | "relative";
 };
 
-export function SaveDivider({
+export function SaveComponent({
   disabled = false,
   position = "absolute",
 }: Props) {

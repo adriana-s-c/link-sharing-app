@@ -5,8 +5,8 @@ import { Stack } from "../../components/Stack";
 import { UserDataDisplay } from "../../components/UserDataDisplay";
 import { PreviewNavigation } from "./PreviewNavigation";
 import { UserProvider, UserLinkDataProvider } from "../../context";
-import { CopyLinkMessage } from "./CopyLinkMessage";
 import useDeviceType from "../../components/useDeviceType";
+import { Message } from "../../components/Message";
 
 export function PreviewPage() {
   const [showMessage, setShowMessage] = React.useState<boolean>(false);
@@ -14,7 +14,7 @@ export function PreviewPage() {
 
   const handleClick = () => {
     setShowMessage(true);
-    setTimeout(() => setShowMessage(false), 4000);
+    setTimeout(() => setShowMessage(false), 3000);
   };
 
   return (
@@ -42,7 +42,12 @@ export function PreviewPage() {
               <UserDataDisplay variant="preview" />
             </div>
           </Stack>
-          {showMessage && <CopyLinkMessage />}
+          {showMessage && (
+            <Message
+              text="The link has been copied to your clipboard!"
+              type="preview"
+            />
+          )}
         </Stack>
       </UserLinkDataProvider>
     </UserProvider>
