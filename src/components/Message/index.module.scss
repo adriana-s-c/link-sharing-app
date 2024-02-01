@@ -1,4 +1,4 @@
-@import "../../../variables.scss";
+@import "../../variables.scss";
 
 @keyframes fadeInOut {
   0%,
@@ -15,7 +15,7 @@
   background-color: $black-color;
   padding: 16px 24px;
   border-radius: $border-radius-m;
-  animation: fadeInOut 4s ease-in forwards;
+  animation: fadeInOut 3s ease-in forwards;
   &.mobile {
     margin: 3%;
     padding: 8px 40px;

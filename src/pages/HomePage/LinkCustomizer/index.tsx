@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import * as React from "react";
 import { Stack } from "../../../components/Stack";
-import { SaveDivider } from "../SaveComponent";
+import { SaveComponent } from "../SaveComponent";
 import { GetStarted } from "./GetStarted";
 import { Option, useUserLinkData, useOptions } from "../../../context";
 import { Links } from "./Links";
@@ -96,7 +96,7 @@ export function LinkCustomizer() {
             </Stack>
           </div>
         </Stack>
-        <SaveDivider position={isStickyBottom ? "sticky" : "absolute"} />
+        <SaveComponent position={isStickyBottom ? "sticky" : "absolute"} />
       </form>
     </Stack>
   );

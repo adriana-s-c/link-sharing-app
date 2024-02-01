@@ -3,11 +3,12 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { Stack } from "../../../components/Stack";
 import { Text } from "../../../components/Text";
-import { SaveDivider } from "../SaveComponent";
+import { SaveComponent } from "../SaveComponent";
 import { ProfileDetailsForm } from "./ProfileDetailsForm";
 import { ProfilePicture } from "./ProfilePicture";
 import { useUserContext } from "../../../context";
 import useDeviceType from "../../../components/useDeviceType";
+import { Message } from "../../../components/Message";
 
 export function ProfileDetails() {
   const { userData, setUserData } = useUserContext();
@@ -16,6 +17,7 @@ export function ProfileDetails() {
   >((userData && userData.image) ?? undefined);
   const [isEditorActive, setIsEditorActive] = React.useState<boolean>(false);
   const { isMobile } = useDeviceType();
+  const [showMessage, setShowMessage] = React.useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -24,12 +26,16 @@ export function ProfileDetails() {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      ...data,
-      image: profilePicture,
-    }));
+    // setUserData((prevUserData) => ({
+    //   ...prevUserData,
+    //   ...data,
+    //   image: profilePicture,
+    // }));
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 3000);
   };
+
+  console.log(showMessage);
 
   React.useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
@@ -69,8 +75,16 @@ export function ProfileDetails() {
             </Stack>
           </Stack>
         </Stack>
-        <SaveDivider disabled={isEditorActive} position="relative" />
+        <SaveComponent disabled={isEditorActive} position="relative" />
       </form>
+      <div className={styles.messagebox}>
+        {showMessage ? (
+          <Message
+            type="profile"
+            text="Your changes have been successfully saved!"
+          />
+        ) : null}
+      </div>
     </Stack>
   );
 }
