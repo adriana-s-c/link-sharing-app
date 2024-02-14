@@ -44,7 +44,7 @@ export function Select({ options, selectedOption, setSelectedOption }: Props) {
   const isSelectedOption = (option: string) => option === selectedOption.value;
 
   return (
-    <div className={styles.relative} ref={selectRef}>
+    <div className={`${styles.relative} custom-select`} ref={selectRef}>
       <Stack
         className={
           isOpen ? ` ${styles.box} ${styles[`box-isOpen`]}` : styles.box
