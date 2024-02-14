@@ -16,6 +16,8 @@ interface Props {
   platform: any;
   errors: any;
   control: any;
+  ref: any;
+  listeners: any;
 }
 
 export function AddLink({
