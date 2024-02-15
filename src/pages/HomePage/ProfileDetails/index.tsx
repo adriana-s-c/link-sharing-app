@@ -77,7 +77,7 @@ export function ProfileDetails() {
           disabled={
             isEditorActive || Object.keys(errors).length > 0 ? true : false
           }
-          position="relative"
+          position="absolute"
         />
       </form>
       {showMessage ? (
