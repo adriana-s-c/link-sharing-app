@@ -95,7 +95,10 @@ export function LinkCustomizer() {
             </Stack>
           </div>
         </Stack>
-        <SaveComponent position={isStickyBottom ? "sticky" : "absolute"} />
+        <SaveComponent
+          position={isStickyBottom ? "sticky" : "absolute"}
+          disabled={Object.keys(errors).length > 0 ? true : false}
+        />
       </form>
     </Stack>
   );

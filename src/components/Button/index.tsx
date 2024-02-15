@@ -1,3 +1,4 @@
+import * as React from "react";
 import styles from "./index.module.scss";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { forwardRef } from "react";
@@ -8,9 +9,10 @@ import { ReactComponent as ProfileIcon } from "../../images/icon-profile-details
 import { ReactComponent as PreviewIcon } from "../../images/icon-preview-header.svg";
 
 type Props = ComponentPropsWithoutRef<"button"> & {
-  colorScheme: "primary" | "secondary" | "third" | "active";
+  colorScheme: "primary" | "secondary" | "third" | "chosen";
   icon?: string;
   children?: ReactNode;
+  onClick?: any;
 };
 
 function getIcon(name: string) {
@@ -31,27 +33,46 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       type = "button",
       colorScheme = "primary",
       children,
+      onClick,
       ...buttonProps
     }: Props,
     ref
-  ) => (
-    <button
-      ref={ref}
-      type={type}
-      className={clsx(
-        styles.button,
-        colorScheme && styles[`colorscheme-${colorScheme}`]
-      )}
-      {...buttonProps}
-    >
-      <Stack
-        orientation={icon && icon === "upload" ? "vertical" : "horizontal"}
-        gap="8px"
-        className={styles.center}
+  ) => {
+    const [isAnimating, setIsAnimating] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 3000);
+      if (onClick) {
+        onClick(e);
+      }
+      if (buttonRef.current) {
+        buttonRef.current.blur();
+      }
+    };
+
+    return (
+      <button
+        ref={buttonRef}
+        type={type}
+        className={clsx(
+          styles.button,
+          colorScheme && styles[`colorscheme-${colorScheme}`],
+          { [styles.animate]: isAnimating && colorScheme === "primary" }
+        )}
+        onClick={handleClick}
+        {...buttonProps}
       >
-        {icon ? getIcon(icon) : null}
-        {children}
-      </Stack>
-    </button>
-  )
+        <Stack
+          orientation={icon && icon === "upload" ? "vertical" : "horizontal"}
+          gap="8px"
+          className={styles.center}
+        >
+          {icon ? getIcon(icon) : null}
+          {children}
+        </Stack>
+      </button>
+    );
+  }
 );

@@ -22,7 +22,7 @@ export function NavBar() {
         <Link to="/home">
           <Button
             icon="link"
-            colorScheme={isProfileActive ? "third" : "active"}
+            colorScheme={isProfileActive ? "third" : "chosen"}
           >
             {isMobile ? null : "Links"}
           </Button>
@@ -30,7 +30,7 @@ export function NavBar() {
         <Link to="/home/profile">
           <Button
             icon="profile"
-            colorScheme={isProfileActive ? "active" : "third"}
+            colorScheme={isProfileActive ? "chosen" : "third"}
           >
             {isMobile ? null : "Profile Details"}
           </Button>
