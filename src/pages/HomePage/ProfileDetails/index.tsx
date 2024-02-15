@@ -73,7 +73,12 @@ export function ProfileDetails() {
             </Stack>
           </Stack>
         </Stack>
-        <SaveComponent disabled={isEditorActive} position="relative" />
+        <SaveComponent
+          disabled={
+            isEditorActive || Object.keys(errors).length > 0 ? true : false
+          }
+          position="relative"
+        />
       </form>
       {showMessage ? (
         <Message
