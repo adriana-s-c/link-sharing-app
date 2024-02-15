@@ -7,17 +7,16 @@ import { Select } from "../../../../../components/Select";
 import { Input } from "../../../../../components/Input";
 import { Option } from "../../../../../context";
 import { Controller } from "react-hook-form";
+import { Control, FieldErrors } from "react-hook-form";
 
 interface Props {
   index: number;
   filteredOptions: Option[];
   onSelectChange: (option: Option) => void;
-  handleRemove: any;
+  handleRemove: (value: string) => void;
   platform: any;
-  errors: any;
-  control: any;
-  ref: any;
-  listeners: any;
+  errors: FieldErrors;
+  control: Control;
 }
 
 export function AddLink({
@@ -58,7 +57,7 @@ export function AddLink({
         </Stack>
         <button
           onClick={() => handleRemove(platform.value)}
-          className={styles.button}
+          className={`${styles.button} remove-button`}
         >
           <Text type="body" size="m" color="grey">
             Remove

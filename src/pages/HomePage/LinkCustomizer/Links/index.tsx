@@ -8,6 +8,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -16,11 +17,8 @@ import {
 } from "@dnd-kit/sortable";
 import { SortableItem } from "./SortableItem";
 import type { PointerEvent } from "react";
+import { Control, FieldErrors } from "react-hook-form";
 
-/**
- * An extended "PointerSensor" that prevent some
- * interactive html element(button, input, textarea, select, option...) from dragging
- */
 export class SmartPointerSensor extends PointerSensor {
   static activators = [
     {
@@ -40,7 +38,7 @@ export class SmartPointerSensor extends PointerSensor {
   ];
 }
 
-function isInteractiveElement(element: Element | null) {
+function isInteractiveElement(element: Element | null): boolean {
   const interactiveElements = [
     "button",
     "input",
@@ -54,24 +52,16 @@ function isInteractiveElement(element: Element | null) {
   ) {
     return true;
   }
-  let currentElement = element;
-  while (currentElement) {
-    if (currentElement.classList.contains("custom-select")) {
-      return true;
-    }
-    currentElement = currentElement.parentElement;
-  }
 
-  return false;
+  return element?.closest(".custom-select, .remove-button") !== null;
 }
 
 interface Props {
   selectedPlatforms: Option[];
   setSelectedPlatforms: React.Dispatch<React.SetStateAction<Option[]>>;
   filteredOptions: Option[];
-  setFilteredOptions: React.Dispatch<React.SetStateAction<Option[]>>;
-  errors: any;
-  control: any;
+  errors: FieldErrors;
+  control: Control;
 }
 
 export function Links({
@@ -86,10 +76,10 @@ export function Links({
     useSensor(KeyboardSensor)
   );
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
+    if (over && active.id !== over.id) {
       const oldIndex = selectedPlatforms.findIndex(
         (platform) => platform.value === active.id
       );
@@ -131,7 +121,6 @@ export function Links({
               id={platform.value}
               index={index}
               platform={platform}
-              setSelectedPlatforms={setSelectedPlatforms}
               filteredOptions={filteredOptions}
               handleOptionChange={handleOptionChange}
               handleRemove={handleRemove}
