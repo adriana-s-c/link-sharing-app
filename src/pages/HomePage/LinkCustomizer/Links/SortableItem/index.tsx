@@ -1,6 +1,18 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { AddLink } from "../AddLink";
 import { Option } from "../../../../../context";
+import { Control, FieldErrors } from "react-hook-form";
+
+type Props = {
+  id: string;
+  index: number;
+  platform: Option;
+  filteredOptions: Option[];
+  handleOptionChange: (index: number, option: Option) => void;
+  handleRemove: (platformValue: string) => void;
+  errors: FieldErrors;
+  control: Control;
+};
 
 export function SortableItem({
   id,
@@ -11,8 +23,7 @@ export function SortableItem({
   handleRemove,
   errors,
   control,
-  setActivatorNodeRef,
-}: any) {
+}: Props) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -21,18 +32,19 @@ export function SortableItem({
     transition,
   };
 
+  const onRemove = () => handleRemove(platform.value);
+  const onChange = (option: Option) => handleOptionChange(index, option);
+
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
       <AddLink
         index={index}
         platform={platform}
         filteredOptions={filteredOptions}
-        onSelectChange={(option: Option) => handleOptionChange(index, option)}
-        handleRemove={() => handleRemove(platform.value)}
+        onSelectChange={onChange}
+        handleRemove={onRemove}
         errors={errors}
         control={control}
-        ref={setActivatorNodeRef}
-        listeners={{ ...listeners }}
       />
     </div>
   );

@@ -86,7 +86,6 @@ export function LinkCustomizer() {
               ) : (
                 <Links
                   filteredOptions={filteredOptions}
-                  setFilteredOptions={setFilteredOptions}
                   selectedPlatforms={selectedPlatforms}
                   setSelectedPlatforms={setSelectedPlatforms}
                   errors={errors}
