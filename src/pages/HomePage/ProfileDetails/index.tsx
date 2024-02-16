@@ -32,27 +32,16 @@ export function ProfileDetails() {
   });
 
   const onSubmit = (data: any) => {
-    setUserData((prevUserData) => ({
-      ...prevUserData,
+    const updatedUserData = {
+      ...userData,
       ...data,
       image: profilePicture,
-    }));
+    };
+    setUserData(updatedUserData);
+    localStorage.setItem("userData", JSON.stringify(updatedUserData));
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 3000);
   };
-
-  React.useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
-    }
-  }, [setUserData]);
-
-  React.useEffect(() => {
-    localStorage.setItem("userData", JSON.stringify(userData));
-  }, [userData]);
-
-  console.log(userData);
 
   return (
     <Stack orientation="vertical" className={styles.fullHeight}>
