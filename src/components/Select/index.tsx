@@ -62,7 +62,11 @@ export function Select({ options, selectedOption, setSelectedOption }: Props) {
         <Arrow className={styles.arrow} />
       </Stack>
       {isOpen && (
-        <Stack orientation="vertical" className={styles.options} gap="12px">
+        <Stack
+          orientation="vertical"
+          className={`${styles.options} options-div`}
+          gap="12px"
+        >
           {options.map((option) => (
             <OptionItem
               key={option.value}
