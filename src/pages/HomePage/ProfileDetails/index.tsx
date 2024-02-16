@@ -23,7 +23,13 @@ export function ProfileDetails() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      firstName: userData?.firstName ?? "",
+      lastName: userData?.lastName ?? "",
+      email: userData?.email ?? "",
+    },
+  });
 
   const onSubmit = (data: any) => {
     setUserData((prevUserData) => ({
@@ -45,6 +51,8 @@ export function ProfileDetails() {
   React.useEffect(() => {
     localStorage.setItem("userData", JSON.stringify(userData));
   }, [userData]);
+
+  console.log(userData);
 
   return (
     <Stack orientation="vertical" className={styles.fullHeight}>
