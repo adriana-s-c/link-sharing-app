@@ -77,7 +77,7 @@ export function AddLink({
       <Controller
         name={`link-${platform.value}`}
         control={control}
-        defaultValue={platform.link || ""}
+        // defaultValue={platform.link || ""}
         rules={{
           required: "Can’t be empty",
           validate: { validateLink },
@@ -88,7 +88,7 @@ export function AddLink({
             id={`link-${platform.value}`}
             icon="link"
             placeholder={platform.placeholder}
-            value={field.value}
+            value={field.value || ""}
             onChange={(e) => {
               field.onChange(e);
               handleLinkChange(e);
