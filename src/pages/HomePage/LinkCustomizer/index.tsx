@@ -31,6 +31,7 @@ export function LinkCustomizer() {
 
   const {
     handleSubmit,
+    reset,
     control,
     formState: { errors, isDirty },
   } = useForm<FormValues>({
@@ -63,17 +64,11 @@ export function LinkCustomizer() {
     setFilteredOptions(newFilteredOptions);
   }, [options, selectedPlatforms]);
 
-  const onSubmit = () => {
+  const onSubmit = (data: FormValues) => {
     setUserLinkData(selectedPlatforms);
     localStorage.setItem("links", JSON.stringify(selectedPlatforms));
+    reset(data);
     setDisabledButton(true);
-  };
-
-  const handleFormSubmit = (e: React.KeyboardEvent<HTMLFormElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      onSubmit();
-    }
   };
 
   const handleAddPlatform = () => {
@@ -85,14 +80,19 @@ export function LinkCustomizer() {
     }
   };
 
-  const isFormDisabled =
-    Object.keys(errors).length > 0 || disabledButton || !isDirty;
+  React.useEffect(() => {
+    if (isDirty) {
+      setDisabledButton(false);
+    }
+  }, [isDirty]);
+
+  const isFormDisabled = Object.keys(errors).length > 0 || disabledButton;
 
   const isStickyBottom = selectedPlatforms.length > 1 ? "sticky" : "absolute";
 
   return (
     <Stack orientation="vertical" className={styles.fullheight}>
-      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleFormSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack
           orientation="vertical"
           className={

@@ -77,7 +77,6 @@ export function AddLink({
       <Controller
         name={`link-${platform.value}`}
         control={control}
-        // defaultValue={platform.link || ""}
         rules={{
           required: "Can’t be empty",
           validate: { validateLink },
