@@ -10,10 +10,16 @@ import { GetIcon } from "../MediaBox";
 type Props = {
   options: Option[];
   selectedOption: any;
-  setSelectedOption?: any;
+  setSelectedOption?: (option: Option) => void;
+  onChange?: (option: Option) => void;
 };
 
-export function Select({ options, selectedOption, setSelectedOption }: Props) {
+export function Select({
+  options,
+  selectedOption,
+  setSelectedOption,
+  onChange,
+}: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const selectRef = React.useRef<HTMLDivElement>(null);
@@ -37,7 +43,14 @@ export function Select({ options, selectedOption, setSelectedOption }: Props) {
   };
 
   const handleOptionClick = (option: Option) => {
-    setSelectedOption(option);
+    if (setSelectedOption) {
+      setSelectedOption(option);
+    }
+
+    if (onChange) {
+      onChange(option);
+    }
+
     setIsOpen(false);
   };
 
