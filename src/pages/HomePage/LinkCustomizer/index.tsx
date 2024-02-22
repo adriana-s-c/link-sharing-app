@@ -49,7 +49,9 @@ export function LinkCustomizer() {
       "link-Hashnode": defaultValue("Hashnode"),
       "link-Stack Overflow": defaultValue("Stack Overflow"),
       "link-Twitch": defaultValue("Twitch"),
+      platform: "GitHub",
     },
+    reValidateMode: "onSubmit",
   });
 
   const [disabledButton, setDisabledButton] = React.useState(false);

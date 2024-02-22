@@ -68,10 +68,17 @@ export function AddLink({
         <Text type="body" size="s">
           Platform
         </Text>
-        <Select
-          options={filteredOptions}
-          selectedOption={platform}
-          setSelectedOption={handleSelectChange}
+        <Controller
+          control={control}
+          name="Platform"
+          render={({ field: { onChange } }) => (
+            <Select
+              options={filteredOptions}
+              selectedOption={platform}
+              setSelectedOption={handleSelectChange}
+              onChange={onChange}
+            />
+          )}
         />
       </Stack>
       <Controller
