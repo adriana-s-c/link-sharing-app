@@ -51,7 +51,7 @@ export function LinkCustomizer() {
       "link-Twitch": defaultValue("Twitch"),
       platform: "GitHub",
     },
-    reValidateMode: "onSubmit",
+    reValidateMode: "onChange",
   });
 
   const [disabledButton, setDisabledButton] = React.useState(false);
@@ -80,6 +80,7 @@ export function LinkCustomizer() {
         filteredOptions[0],
       ]);
     }
+    setDisabledButton(false);
   };
 
   React.useEffect(() => {
@@ -117,6 +118,7 @@ export function LinkCustomizer() {
                   setSelectedPlatforms={setSelectedPlatforms}
                   errors={errors}
                   control={control}
+                  setDisabledButton={setDisabledButton}
                 />
               )}
             </Stack>
