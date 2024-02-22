@@ -5,7 +5,7 @@ export type Option = {
   value: string;
   placeholder: string;
   link?: string;
-  website?: string;
+  website: string;
 };
 
 export const useUserLinkData = () => {

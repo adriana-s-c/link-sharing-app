@@ -14,7 +14,7 @@ interface Props {
   filteredOptions: Option[];
   onSelectChange: (option: Option) => void;
   handleRemove: (value: string) => void;
-  platform: any;
+  platform: Option;
   errors: FieldErrors;
   control: Control;
 }

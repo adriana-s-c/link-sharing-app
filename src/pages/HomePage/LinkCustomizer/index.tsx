@@ -113,11 +113,15 @@ export function LinkCustomizer() {
                 <GetStarted />
               ) : (
                 <Links
-                  filteredOptions={filteredOptions}
-                  selectedPlatforms={selectedPlatforms}
-                  setSelectedPlatforms={setSelectedPlatforms}
-                  errors={errors}
-                  control={control}
+                  options={{
+                    filtered: filteredOptions,
+                    selected: selectedPlatforms,
+                    setSelected: setSelectedPlatforms,
+                  }}
+                  form={{
+                    errors: errors,
+                    control: control,
+                  }}
                   setDisabledButton={setDisabledButton}
                 />
               )}
