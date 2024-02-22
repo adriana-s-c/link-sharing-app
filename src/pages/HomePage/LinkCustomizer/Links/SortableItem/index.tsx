@@ -8,23 +8,23 @@ import { useMutationObserver } from "../../../../../components/useMutationObserv
 type Props = {
   id: string;
   index: number;
-  platform: Option;
-  filteredOptions: Option[];
-  handleOptionChange: (index: number, option: Option) => void;
-  handleRemove: (platformValue: string) => void;
-  errors: FieldErrors;
-  control: Control;
+  options: {
+    platform: Option;
+    filteredOptions: Option[];
+    handleOptionChange: (index: number, option: Option) => void;
+    handleRemove: (platformValue: string) => void;
+  };
+  form: {
+    errors: FieldErrors;
+    control: Control;
+  };
 };
 
 export function SortableItem({
   id,
   index,
-  platform,
-  filteredOptions,
-  handleOptionChange,
-  handleRemove,
-  errors,
-  control,
+  options: { platform, filteredOptions, handleOptionChange, handleRemove },
+  form: { errors, control },
 }: Props) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });

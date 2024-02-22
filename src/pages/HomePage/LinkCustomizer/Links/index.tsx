@@ -56,21 +56,22 @@ function isInteractiveElement(element: Element | null): boolean {
   return element?.closest(".custom-select, .remove-button") !== null;
 }
 
-interface Props {
-  selectedPlatforms: Option[];
-  setSelectedPlatforms: React.Dispatch<React.SetStateAction<Option[]>>;
-  filteredOptions: Option[];
-  errors: FieldErrors;
-  control: Control;
+type Props = {
+  options: {
+    filtered: Option[];
+    selected: Option[];
+    setSelected: React.Dispatch<React.SetStateAction<Option[]>>;
+  };
+  form: {
+    errors: FieldErrors;
+    control: Control;
+  };
   setDisabledButton: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 export function Links({
-  selectedPlatforms,
-  setSelectedPlatforms,
-  filteredOptions,
-  errors,
-  control,
+  options: { filtered, selected, setSelected },
+  form: { errors, control },
   setDisabledButton,
 }: Props) {
   const sensors = useSensors(
@@ -82,25 +83,25 @@ export function Links({
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
-      const oldIndex = selectedPlatforms.findIndex(
+      const oldIndex = selected.findIndex(
         (platform) => platform.value === active.id
       );
-      const newIndex = selectedPlatforms.findIndex(
+      const newIndex = selected.findIndex(
         (platform) => platform.value === over.id
       );
-      setSelectedPlatforms((items) => arrayMove(items, oldIndex, newIndex));
+      setSelected((items) => arrayMove(items, oldIndex, newIndex));
     }
   };
 
   const handleRemove = (platformValue: any) => {
-    setSelectedPlatforms((currentPlatforms) =>
+    setSelected((currentPlatforms) =>
       currentPlatforms.filter((platform) => platform.value !== platformValue)
     );
     setDisabledButton(false);
   };
 
   const handleOptionChange = (index: number, option: Option) => {
-    setSelectedPlatforms((currentPlatforms) => {
+    setSelected((currentPlatforms) => {
       const newPlatforms = [...currentPlatforms];
       newPlatforms[index] = option;
       return newPlatforms;
@@ -114,21 +115,25 @@ export function Links({
       onDragEnd={handleDragEnd}
     >
       <SortableContext
-        items={selectedPlatforms.map((platform) => platform.value)}
+        items={selected.map((platform) => platform.value)}
         strategy={verticalListSortingStrategy}
       >
         <Stack orientation="vertical" gap="24px">
-          {selectedPlatforms.map((platform, index) => (
+          {selected.map((platform, index) => (
             <SortableItem
               key={platform.value}
               id={platform.value}
               index={index}
-              platform={platform}
-              filteredOptions={filteredOptions}
-              handleOptionChange={handleOptionChange}
-              handleRemove={handleRemove}
-              errors={errors}
-              control={control}
+              options={{
+                platform: platform,
+                filteredOptions: filtered,
+                handleOptionChange: handleOptionChange,
+                handleRemove: handleRemove,
+              }}
+              form={{
+                errors: errors,
+                control: control,
+              }}
             />
           ))}
         </Stack>
