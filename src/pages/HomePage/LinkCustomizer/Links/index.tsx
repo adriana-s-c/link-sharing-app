@@ -62,6 +62,7 @@ interface Props {
   filteredOptions: Option[];
   errors: FieldErrors;
   control: Control;
+  setDisabledButton: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function Links({
@@ -70,6 +71,7 @@ export function Links({
   filteredOptions,
   errors,
   control,
+  setDisabledButton,
 }: Props) {
   const sensors = useSensors(
     useSensor(SmartPointerSensor),
@@ -94,6 +96,7 @@ export function Links({
     setSelectedPlatforms((currentPlatforms) =>
       currentPlatforms.filter((platform) => platform.value !== platformValue)
     );
+    setDisabledButton(false);
   };
 
   const handleOptionChange = (index: number, option: Option) => {
