@@ -72,9 +72,10 @@ export function GetIcon({ name, color = "grey" }: GetIconProps) {
 type Props = {
   className?: string;
   name: string;
+  link?: any;
 };
 
-export function MediaBox({ name, className }: Props) {
+export function MediaBox({ name, className, link }: Props) {
   const platformName = name.replace(/[ .]/g, "").toLowerCase();
 
   return (
@@ -97,7 +98,9 @@ export function MediaBox({ name, className }: Props) {
           {name}
         </Text>
       </Stack>
-      <Arrow className={styles.arrow} />
+      <a href={`https://${link}`} target="_blank" rel="noopener noreferrer">
+        <Arrow className={styles.arrow} />
+      </a>
     </Stack>
   );
 }
