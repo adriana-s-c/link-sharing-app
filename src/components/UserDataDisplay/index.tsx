@@ -72,8 +72,10 @@ export function UserDataDisplay({ variant = "preview" }: UserDataDisplayProps) {
         gap="14px"
         align="center"
       >
-        {userData?.image && (
+        {userData?.image ? (
           <img src={userData.image} alt="Avatar" className={styles.image} />
+        ) : (
+          <div className={styles.greyCircle}></div>
         )}
         <Stack
           orientation="vertical"
