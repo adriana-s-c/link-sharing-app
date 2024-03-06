@@ -1,16 +1,15 @@
 @import "../../../variables.scss";
 
 .box {
-  position: relative;
+  position: sticky;
+  top: 0px;
+  min-height: 631px;
+  height: 100%;
   width: fit-content;
   background-color: $white-color;
   padding-inline: calc((30% - 308px) / 2);
   padding-block: 101px;
   border-radius: $border-radius-m;
-}
-
-.phone {
-  position: relative;
 }
 
 .margin {
