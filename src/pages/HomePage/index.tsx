@@ -24,6 +24,7 @@ export function HomePage() {
       >
         <UserProvider>
           {isTablet || isMobile ? null : <Phone />}
+
           <div
             className={
               isMobile

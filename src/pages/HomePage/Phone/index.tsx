@@ -6,7 +6,7 @@ import { Stack } from "../../../components/Stack";
 export const Phone = () => {
   return (
     <Stack className={styles.box}>
-      <ImagePhone className={styles.phone} />
+      <ImagePhone />
       <div className={styles.margin}>
         <UserDataDisplay variant="phone" />
       </div>
