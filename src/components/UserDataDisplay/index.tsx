@@ -2,7 +2,7 @@ import styles from "./index.module.scss";
 import { Stack } from "../Stack";
 import { Text } from "../Text";
 import { MediaBox } from "../MediaBox";
-import { useUserContext, useUserLinkData } from "../../context";
+import { Option, useUserContext, useUserLinkData } from "../../context";
 
 const isLongName = (firstName?: string, lastName?: string): "s" | "m" => {
   const fullNameLength = (firstName?.length || 0) + (lastName?.length || 0);
@@ -39,7 +39,7 @@ const renderEmailText = (email?: string) => {
   ) : null;
 };
 
-const renderMediaBoxes = (userLinkData?: { value: string }[]) => {
+const renderMediaBoxes = (userLinkData?: Option[]) => {
   return (
     userLinkData
       ?.slice(0, 5)
@@ -47,6 +47,7 @@ const renderMediaBoxes = (userLinkData?: { value: string }[]) => {
         <MediaBox
           key={index}
           name={platform.value}
+          link={platform.link || "#"}
           className={styles.mediabox}
         />
       )) || null
