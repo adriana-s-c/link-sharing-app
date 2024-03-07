@@ -34,11 +34,9 @@ export function NavBar() {
         </Link>
       </Stack>
       <Stack>
-        <Link to="/preview">
-          <Button icon="preview" colorScheme="secondary">
-            {isMobile ? null : "Preview"}
-          </Button>
-        </Link>
+        <Button icon="preview" colorScheme="secondary" to="/preview">
+          {isMobile ? null : "Preview"}
+        </Button>
       </Stack>
     </Stack>
   );

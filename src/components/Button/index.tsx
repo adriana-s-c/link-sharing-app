@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./index.module.scss";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import { forwardRef } from "react";
 import clsx from "clsx";
 import { Stack } from "../Stack";
@@ -10,7 +11,8 @@ type Props = ComponentPropsWithoutRef<"button"> & {
   colorScheme: "primary" | "secondary" | "third" | "chosen";
   icon?: "preview";
   children?: ReactNode;
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  to?: string;
 };
 
 function getIcon(name: string) {
@@ -28,16 +30,22 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
       colorScheme = "primary",
       children,
       onClick,
+      to,
       ...buttonProps
     }: Props,
     ref
   ) => {
     const [isAnimating, setIsAnimating] = React.useState(false);
     const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const navigate = useNavigate();
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       setIsAnimating(true);
       setTimeout(() => setIsAnimating(false), 3000);
+      if (to) {
+        navigate(to);
+        return;
+      }
       if (onClick) {
         onClick(e);
       }
