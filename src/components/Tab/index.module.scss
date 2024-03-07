@@ -1,0 +1,33 @@
+@import "../../variables.scss";
+
+.box {
+  padding: 11px 27px;
+  border-radius: $border-radius-s;
+  background-color: transparent;
+  color: $grey-color;
+  &:hover {
+    color: rgba($primary-color, 1);
+    .icon,
+    .text {
+      fill: $primary-color;
+      color: $primary-color;
+    }
+  }
+  &-chosen {
+    color: $primary-color;
+    background-color: $third-color;
+    .icon,
+    .text {
+      fill: $primary-color;
+      color: $primary-color;
+    }
+  }
+}
+
+.icon,
+.text {
+  transition: fill 0.3s ease-in, color 0.3s ease-in;
+
+  fill: $grey-color;
+  color: inherit;
+}
