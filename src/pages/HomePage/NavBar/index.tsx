@@ -1,11 +1,11 @@
 import styles from "./index.module.scss";
 import { Stack } from "../../../components/Stack";
-import logoBig from "../../../images/logo-devlinks-large.svg";
-import logoSmall from "../../../images/logo-devlinks-small.svg";
-import previewIcon from "../../../images/icon-preview-header.svg";
 import { Button } from "../../../components/Button";
+import { Tab } from "../../../components/Tab";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import logoBig from "../../../images/logo-devlinks-large.svg";
+import logoSmall from "../../../images/logo-devlinks-small.svg";
 import useDeviceType from "../../../components/useDeviceType";
 
 export function NavBar() {
@@ -18,22 +18,19 @@ export function NavBar() {
   return (
     <Stack orientation="horizontal" spacing="between" className={styles.box}>
       <img src={logo} alt="Logo" className={styles.logo} />
-      <Stack orientation="horizontal">
+      <Stack orientation="horizontal" gap="16px">
         <Link to="/home">
-          <Button
-            icon="link"
-            colorScheme={isProfileActive ? "third" : "chosen"}
-          >
+          <Tab icon="link" colorScheme={isProfileActive ? "default" : "chosen"}>
             {isMobile ? null : "Links"}
-          </Button>
+          </Tab>
         </Link>
         <Link to="/home/profile">
-          <Button
+          <Tab
             icon="profile"
-            colorScheme={isProfileActive ? "chosen" : "third"}
+            colorScheme={isProfileActive ? "chosen" : "default"}
           >
-            {isMobile ? null : "Profile Details"}
-          </Button>
+            Profile Details
+          </Tab>
         </Link>
       </Stack>
       <Stack>

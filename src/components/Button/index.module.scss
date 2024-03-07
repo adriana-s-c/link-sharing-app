@@ -77,23 +77,6 @@
       background-color: $third-color;
     }
   }
-  &-third {
-    background-color: transparent;
-    color: $grey-color;
-    &:hover {
-      color: rgba($primary-color, 1);
-      .icon {
-        fill: $primary-color;
-      }
-    }
-  }
-  &-chosen {
-    color: $primary-color;
-    background-color: $third-color;
-    .icon {
-      fill: $primary-color;
-    }
-  }
 }
 
 .icon {
