@@ -114,30 +114,30 @@ export function Links({
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
     >
-      <SortableContext
+      {/* <SortableContext
         items={selected.map((platform) => platform.value)}
         strategy={verticalListSortingStrategy}
-      >
-        <Stack orientation="vertical" gap="24px">
-          {selected.map((platform, index) => (
-            <SortableItem
-              key={platform.value}
-              id={platform.value}
-              index={index}
-              options={{
-                platform: platform,
-                filteredOptions: filtered,
-                handleOptionChange: handleOptionChange,
-                handleRemove: handleRemove,
-              }}
-              form={{
-                errors: errors,
-                control: control,
-              }}
-            />
-          ))}
-        </Stack>
-      </SortableContext>
+      > */}
+      <Stack orientation="vertical" gap="24px">
+        {selected.map((platform, index) => (
+          <SortableItem
+            key={platform.value}
+            id={platform.value}
+            index={index}
+            options={{
+              platform: platform,
+              filteredOptions: filtered,
+              handleOptionChange: handleOptionChange,
+              handleRemove: handleRemove,
+            }}
+            form={{
+              errors: errors,
+              control: control,
+            }}
+          />
+        ))}
+      </Stack>
+      {/* </SortableContext> */}
     </DndContext>
   );
 }
