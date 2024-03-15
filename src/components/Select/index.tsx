@@ -22,8 +22,9 @@ export function Select({
 }: Props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const selectRef = React.useRef<HTMLDivElement>(null);
-  const [focusedIndex, setFocusedIndex] = React.useState<number | null>(0);
+  const [focusedIndex, setFocusedIndex] = React.useState<number | null>(null);
   const optionRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const headerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (isOpen && focusedIndex !== null && optionRefs.current[focusedIndex]) {
@@ -33,14 +34,9 @@ export function Select({
 
   React.useEffect(() => {
     if (isOpen) {
-      const currentSelectedIndex = options.findIndex(
-        (option) => option.value === selectedOption.value
-      );
-      setFocusedIndex(currentSelectedIndex >= 0 ? currentSelectedIndex : 0);
-    } else {
       setFocusedIndex(null);
     }
-  }, [isOpen, options, selectedOption.value]);
+  }, [isOpen]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -61,8 +57,16 @@ export function Select({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const isHeaderFocused = document.activeElement === headerRef.current;
+
+    if (isHeaderFocused) {
+      if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setIsOpen(false);
+        return;
+      }
+    }
     if (!isOpen) {
-      // Open the select with any keyDown if it's not open
       if (
         e.key === "Enter" ||
         e.key === " " ||
@@ -74,20 +78,25 @@ export function Select({
       }
       return;
     }
+
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        setFocusedIndex((prevIndex) =>
-          prevIndex !== null ? (prevIndex + 1) % options.length : 0
-        );
+        setFocusedIndex((prevIndex) => {
+          const nextIndex = prevIndex !== null ? prevIndex + 1 : 0;
+          return nextIndex < options.length ? nextIndex : prevIndex;
+        });
         break;
       case "ArrowUp":
         e.preventDefault();
-        setFocusedIndex((prevIndex) =>
-          prevIndex !== null
-            ? (prevIndex - 1 + options.length) % options.length
-            : options.length - 1
-        );
+        setFocusedIndex((prevIndex) => {
+          if (prevIndex === 0 || prevIndex === null) {
+            headerRef.current?.focus();
+            return null;
+          } else {
+            return (prevIndex - 1 + options.length) % options.length;
+          }
+        });
         break;
       case "Enter":
       case " ":
@@ -141,6 +150,8 @@ export function Select({
         onClick={handleToggle}
         align="center"
         spacing="between"
+        ref={headerRef}
+        tabIndex={-1}
       >
         <Stack gap="12px" align="center">
           {GetIcon({ name: selectedOption.value })}
@@ -156,16 +167,19 @@ export function Select({
           className={`${styles.options} options-div`}
           gap="12px"
         >
-          {options.map((option, index) => (
-            <OptionItem
-              key={option.value}
-              ref={(el) => (optionRefs.current[index] = el)}
-              icon={GetIcon({ name: option.value, color: "white" })}
-              value={option.value}
-              isActive={isSelectedOption(option.value)}
-              onClick={() => handleOptionClick(option)}
-            />
-          ))}
+          {options.map((option, index) => {
+            const isActive = isSelectedOption(option.value);
+            return (
+              <OptionItem
+                key={option.value}
+                ref={(el) => (optionRefs.current[index] = el)}
+                icon={GetIcon({ name: option.value, color: "white" })}
+                value={option.value}
+                isActive={isActive}
+                onClick={() => handleOptionClick(option)}
+              />
+            );
+          })}
         </Stack>
       )}
     </div>

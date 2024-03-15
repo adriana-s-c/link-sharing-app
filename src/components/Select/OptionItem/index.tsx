@@ -12,6 +12,7 @@ type OptionItemProps = {
 export const OptionItem = React.forwardRef<HTMLDivElement, OptionItemProps>(
   (props, ref) => {
     const { icon, value, isActive, onClick } = props;
+
     return (
       <div
         tabIndex={0}
@@ -40,3 +41,5 @@ export const OptionItem = React.forwardRef<HTMLDivElement, OptionItemProps>(
     );
   }
 );
+
+OptionItem.displayName = "OptionItem";
