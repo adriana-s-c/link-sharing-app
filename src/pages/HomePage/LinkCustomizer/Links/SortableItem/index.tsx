@@ -1,9 +1,7 @@
-import * as React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { AddLink } from "../AddLink";
 import { Option } from "../../../../../context";
 import { Control, FieldErrors } from "react-hook-form";
-import { useMutationObserver } from "../../../../../components/useMutationObserver";
 
 type Props = {
   id: string;
@@ -18,6 +16,7 @@ type Props = {
     errors: FieldErrors;
     control: Control;
   };
+  isDragEnabled: boolean;
 };
 
 export function SortableItem({
@@ -25,10 +24,11 @@ export function SortableItem({
   index,
   options: { platform, filteredOptions, handleOptionChange, handleRemove },
   form: { errors, control },
+  isDragEnabled,
 }: Props) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
-  const [isDraggable, setIsDraggable] = React.useState(true);
+  const { setNodeRef, transform, transition } = useSortable({
+    id,
+  });
 
   const style = {
     transform: transform ? `translate3d(0, ${transform.y}px, 0)` : "",
@@ -38,14 +38,8 @@ export function SortableItem({
   const onRemove = () => handleRemove(platform.value);
   const onChange = (option: Option) => handleOptionChange(index, option);
 
-  useMutationObserver(".options-div", (exists) => {
-    setIsDraggable(!exists);
-  });
-
-  const dragListeners = isDraggable ? listeners : {};
-
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...dragListeners}>
+    <div ref={setNodeRef} style={style}>
       <AddLink
         index={index}
         platform={platform}
@@ -54,6 +48,8 @@ export function SortableItem({
         handleRemove={onRemove}
         errors={errors}
         control={control}
+        id={id}
+        isDragEnabled={isDragEnabled}
       />
     </div>
   );
