@@ -16,45 +16,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { SortableItem } from "./SortableItem";
-import type { PointerEvent } from "react";
 import { Control, FieldErrors } from "react-hook-form";
-
-export class SmartPointerSensor extends PointerSensor {
-  static activators = [
-    {
-      eventName: "onPointerDown" as any,
-      handler: ({ nativeEvent: event }: PointerEvent) => {
-        if (
-          !event.isPrimary ||
-          event.button !== 0 ||
-          isInteractiveElement(event.target as Element)
-        ) {
-          return false;
-        }
-
-        return true;
-      },
-    },
-  ];
-}
-
-function isInteractiveElement(element: Element | null): boolean {
-  const interactiveElements = [
-    "button",
-    "input",
-    "textarea",
-    "select",
-    "option",
-  ];
-  if (
-    element?.tagName &&
-    interactiveElements.includes(element.tagName.toLowerCase())
-  ) {
-    return true;
-  }
-
-  return element?.closest(".custom-select, .remove-button") !== null;
-}
 
 type Props = {
   options: {
@@ -75,7 +37,7 @@ export function Links({
   setDisabledButton,
 }: Props) {
   const sensors = useSensors(
-    useSensor(SmartPointerSensor),
+    useSensor(PointerSensor),
     useSensor(KeyboardSensor)
   );
 
@@ -108,36 +70,39 @@ export function Links({
     });
   };
 
+  const isDragEnabled = selected.length > 1;
+
   return (
     <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
     >
-      {/* <SortableContext
+      <SortableContext
         items={selected.map((platform) => platform.value)}
         strategy={verticalListSortingStrategy}
-      > */}
-      <Stack orientation="vertical" gap="24px">
-        {selected.map((platform, index) => (
-          <SortableItem
-            key={platform.value}
-            id={platform.value}
-            index={index}
-            options={{
-              platform: platform,
-              filteredOptions: filtered,
-              handleOptionChange: handleOptionChange,
-              handleRemove: handleRemove,
-            }}
-            form={{
-              errors: errors,
-              control: control,
-            }}
-          />
-        ))}
-      </Stack>
-      {/* </SortableContext> */}
+      >
+        <Stack orientation="vertical" gap="24px">
+          {selected.map((platform, index) => (
+            <SortableItem
+              key={platform.value}
+              id={platform.value}
+              index={index}
+              isDragEnabled={isDragEnabled}
+              options={{
+                platform: platform,
+                filteredOptions: filtered,
+                handleOptionChange: handleOptionChange,
+                handleRemove: handleRemove,
+              }}
+              form={{
+                errors: errors,
+                control: control,
+              }}
+            />
+          ))}
+        </Stack>
+      </SortableContext>
     </DndContext>
   );
 }
