@@ -19,7 +19,7 @@ export function LinkCustomizer() {
   const { userLinkData, setUserLinkData } = useUserLinkData();
   const [filteredOptions, setFilteredOptions] = React.useState(options);
   const [selectedPlatforms, setSelectedPlatforms] = React.useState<Option[]>(
-    userLinkData && userLinkData.length > 0 ? userLinkData : [options[0]]
+    userLinkData && userLinkData.length > 0 ? userLinkData : []
   );
 
   const defaultValue = (platformName: string) => {
