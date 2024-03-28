@@ -17,7 +17,9 @@ export function NavBar() {
 
   return (
     <Stack orientation="horizontal" spacing="between" className={styles.box}>
-      <img src={logo} alt="Logo" className={styles.logo} />
+      <Link to="/home">
+        <img src={logo} alt="Logo" className={styles.logo} />
+      </Link>
       <Stack orientation="horizontal" gap="16px">
         <Link to="/home">
           <Tab icon="link" colorScheme={isProfileActive ? "default" : "chosen"}>
