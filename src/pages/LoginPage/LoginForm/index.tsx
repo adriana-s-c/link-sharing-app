@@ -32,7 +32,9 @@ export function LoginForm() {
         type="password"
         icon="password"
       />
-      <Button colorScheme="primary">Login</Button>
+      <Button colorScheme="primary" to="/home">
+        Login
+      </Button>
       <Stack
         orientation={isMobile ? "vertical" : "horizontal"}
         gap="4px"

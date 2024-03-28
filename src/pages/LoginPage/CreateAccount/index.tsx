@@ -42,7 +42,9 @@ export function CreateAccount() {
       <Text type="body" size="s" color="grey">
         Password must contain at least 8 characters
       </Text>
-      <Button colorScheme="primary">Create new account</Button>
+      <Button colorScheme="primary" to="/home">
+        Create new account
+      </Button>
       <Stack
         orientation={isMobile ? "vertical" : "horizontal"}
         gap="4px"
