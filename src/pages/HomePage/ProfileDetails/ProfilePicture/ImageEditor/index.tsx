@@ -5,15 +5,15 @@ import AvatarEditor from "react-avatar-editor";
 import { Button } from "../../../../../components/Button";
 
 type ImageEditorProps = {
-  picture: any;
-  setPicture: React.Dispatch<
-    React.SetStateAction<HTMLCanvasElement | string | undefined>
-  >;
+  picture: string | undefined;
+  temporaryPicture: string | undefined;
+  setPicture: React.Dispatch<React.SetStateAction<string | undefined>>;
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function ImageEditor({
   picture,
+  temporaryPicture,
   setPicture,
   setIsActive,
 }: ImageEditorProps) {
@@ -26,31 +26,35 @@ export function ImageEditor({
     setIsActive(false);
   };
 
-  return picture !== undefined ? (
+  const handleCancel = () => {
+    setPicture(picture);
+    setIsActive(false);
+  };
+
+  return temporaryPicture ? (
     <Stack orientation="vertical">
-      {typeof picture === "string" ? (
-        <AvatarEditor
-          ref={editorRef}
-          image={picture}
-          width={193}
-          height={193}
-          borderRadius={16}
-          className={styles.position}
-          style={{
-            width: "100%",
-            height: "100%",
-            minWidth: "193px",
-            minHight: "193px",
-          }}
-        />
-      ) : (
-        <AvatarEditor ref={editorRef} image={picture.toDataURL()} />
-      )}
-      <div className={styles.button}>
+      <AvatarEditor
+        ref={editorRef}
+        image={temporaryPicture}
+        width={193}
+        height={193}
+        borderRadius={16}
+        className={styles.position}
+        style={{
+          width: "100%",
+          height: "100%",
+          minWidth: "193px",
+          minHight: "193px",
+        }}
+      />
+      <Stack className={styles.button}>
+        <Button colorScheme="secondary" type="button" onClick={handleCancel}>
+          Cancel
+        </Button>
         <Button colorScheme="primary" type="button" onClick={handleSave}>
           Done
         </Button>
-      </div>
+      </Stack>
     </Stack>
   ) : null;
 }
