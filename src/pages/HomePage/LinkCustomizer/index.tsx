@@ -89,7 +89,10 @@ export function LinkCustomizer() {
     }
   }, [isDirty]);
 
-  const isFormDisabled = Object.keys(errors).length > 0 || disabledButton;
+  const isFormDisabled =
+    selectedPlatforms.length === 0 ||
+    Object.keys(errors).length > 0 ||
+    disabledButton;
 
   const isStickyBottom = selectedPlatforms.length > 1 ? "sticky" : "absolute";
 

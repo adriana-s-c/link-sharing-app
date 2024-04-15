@@ -8,9 +8,7 @@ import useDeviceType from "../../../../components/useDeviceType";
 
 type ProfilePictureProps = {
   profilePicture: string | undefined;
-  setProfilePicture: React.Dispatch<
-    React.SetStateAction<string | HTMLCanvasElement | undefined>
-  >;
+  setProfilePicture: React.Dispatch<React.SetStateAction<string | undefined>>;
   isEditorActive: boolean;
   setIsEditorActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -22,26 +20,28 @@ export function ProfilePicture({
   setIsEditorActive,
 }: ProfilePictureProps) {
   const { isMobile } = useDeviceType();
+  const [temporaryPicture, setTemporaryPicture] = React.useState<
+    string | undefined
+  >();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsEditorActive(true);
     const file = e.target.files?.[0];
 
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       const image = new Image();
       image.src = imageUrl;
-      setProfilePicture(imageUrl);
 
       image.onload = function () {
         const width = image.width;
         const height = image.height;
 
         if (width <= 1024 && height <= 1024) {
+          setIsEditorActive(true);
+          setTemporaryPicture(imageUrl);
         } else {
           alert("Image dimensions must be below 1024x1024px.");
           e.target.value = "";
-
           URL.revokeObjectURL(imageUrl);
         }
       };
@@ -67,6 +67,7 @@ export function ProfilePicture({
           {isEditorActive ? (
             <ImageEditor
               picture={profilePicture}
+              temporaryPicture={temporaryPicture}
               setPicture={setProfilePicture}
               setIsActive={setIsEditorActive}
             />
