@@ -3,6 +3,7 @@ import { Stack } from "../Stack";
 import { Text } from "../Text";
 import { MediaBox } from "../MediaBox";
 import { Option, useUserContext, useUserLinkData } from "../../context";
+import useDeviceType from "../useDeviceType";
 
 const isLongName = (firstName?: string, lastName?: string): "s" | "m" => {
   const fullNameLength = (firstName?.length || 0) + (lastName?.length || 0);
@@ -61,6 +62,7 @@ type UserDataDisplayProps = {
 export function UserDataDisplay({ variant = "preview" }: UserDataDisplayProps) {
   const { userLinkData } = useUserLinkData();
   const { userData } = useUserContext();
+  const { isMobile } = useDeviceType();
 
   const boxClass = variant === "preview" ? styles.boxPreview : styles.boxPhone;
 
@@ -81,7 +83,7 @@ export function UserDataDisplay({ variant = "preview" }: UserDataDisplayProps) {
           orientation="vertical"
           gap="14px"
           align="center"
-          className={styles.background}
+          className={isMobile ? null : styles.background}
         >
           {renderNameText(userData)}
           {renderEmailText(userData?.email)}

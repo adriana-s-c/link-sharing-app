@@ -31,7 +31,7 @@ export function NavBar() {
             icon="profile"
             colorScheme={isProfileActive ? "chosen" : "default"}
           >
-            Profile Details
+            {isMobile ? null : "Profile Details"}
           </Tab>
         </Link>
       </Stack>

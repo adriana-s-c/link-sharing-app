@@ -5,6 +5,7 @@ import { ReactComponent as LinksIcon } from "../../images/icon-link.svg";
 import { ReactComponent as ProfileIcon } from "../../images/icon-profile-details-header.svg";
 import { Text } from "../Text";
 import { Stack } from "../Stack";
+import useDeviceType from "../useDeviceType";
 
 type Props = {
   children: React.ReactNode;
@@ -24,12 +25,14 @@ function getIcon(name: string) {
 }
 
 export function Tab({ children, icon, colorScheme }: Props) {
+  const { isMobile } = useDeviceType();
+
   return (
     <Stack
       className={clsx(styles.box, {
         [styles[`box-chosen`]]: colorScheme === "chosen",
       })}
-      gap="8px"
+      gap={isMobile ? "0" : "8px"}
       align="center"
     >
       {icon && getIcon(icon)}
